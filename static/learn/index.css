@@ -1,0 +1,47 @@
+.html {
+    background-color: rgb(221, 221, 221);
+}
+
+.navbar {
+    font-family: tahoma;
+    font-size: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar li {
+    display: inline;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.navbar a:hover {
+    background-color: grey;
+    color: white;
+}
+.top {
+    font-family: georgia;
+    text-align: center;
+}
+
+.mainbody {
+    padding: 20px;
+    width: 95%;
+    margin: auto;
+    background-color: rgb(190, 190, 190);
+    border-radius: 10px;
+    text-align: center;
+    font-family: georgia;
+}
