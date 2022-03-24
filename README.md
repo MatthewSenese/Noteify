@@ -1,2 +1,2 @@
-# The More You Know
-Microlearning tool final team project with Matt O'Malley, Matthew Senese, & Jonathan Rayo
+# Noteify
+Note taking web app for the final team project with Matt O'Malley, Matthew Senese, & Jonathan Rayo

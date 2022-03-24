@@ -1,6 +1,6 @@
 {
-    "name": "the-more-you-know",
-    "description": "Web app that delivers related info based upon user query",
+    "name": "noteify",
+    "description": "Web app that keeps notes for a user in a database",
     "version": "0.0.1",
     "private": true,
     "license": "MIT",
