@@ -54,6 +54,11 @@ a {
     src: url(fonts/strike.ttf)
 }
 
+@font-face {
+    font-family: 'fire';
+    src: url(fonts/fire.ttf)
+}
+
 .mainbody {
     padding: 20px;
     width: 90%;
@@ -62,4 +67,12 @@ a {
     border-radius: 10px;
     text-align: center;
     font-family: georgia;
+}
+
+.bottomnav {
+    position: fixed;
+    bottom: 0;
+    width: 88%;
+    font-family: fire;
+    font-size: 16px;
 }

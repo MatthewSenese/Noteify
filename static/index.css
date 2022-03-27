@@ -32,7 +32,6 @@ a {
     color: white;
 }
 
-
 .toptitle {
     font-size: 40px;
     margin-bottom: 0; 
@@ -49,11 +48,14 @@ a {
     font-weight: bold;
 }
 
-
-
 @font-face {
     font-family: 'strike';
     src: url(fonts/strike.ttf)
+}
+
+@font-face {
+    font-family: 'fire';
+    src: url(fonts/fire.ttf)
 }
 
 .mainbody {
@@ -64,4 +66,18 @@ a {
     border-radius: 10px;
     text-align: center;
     font-family: georgia;
+}
+
+.bodytext {
+    padding: 10px;
+    width: 60%;
+    margin: auto;
+}
+
+.bottomnav {
+    position: fixed;
+    bottom: 0;
+    width: 88%;
+    font-family: fire;
+    font-size: 16px;
 }
