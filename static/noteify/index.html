@@ -35,7 +35,8 @@
         // Function to show elements upon click for note creation
         function showText() {
             document.getElementById('clearText').className = "show";
-            document.getElementById('submitNote').className = "show"; 
+            document.getElementById('submitNote').className = "show";
+            document.getElementById('titleInput').className = "show"; 
             document.getElementById('noteInput').className = "show"; }
 
         // Function to clear textbox upon click
@@ -48,8 +49,12 @@
         }
     </script>
 
+    <!-- Textbox for Title line -->
+    <textarea  style = "line-height: 10px; resize: none" placeholder = "Title... (required)" class = "textBox" id = "titleInput" name = "titleInput"
+    rows = "1" cols = "35" wrap = "physical"></textarea><br><br>
+
     <!-- Textbox for user input -->
-    <textarea placeholder = "Start writing..." class = "textBox" id = "noteInput" name = "textInput"
+    <textarea placeholder = "Start writing... (required)" class = "textBox" id = "noteInput" name = "textInput"
     rows = "10" cols = "70" wrap = "physical"></textarea>
 
     <!-- Div style for inline buttons -->
