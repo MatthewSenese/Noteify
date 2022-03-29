@@ -69,6 +69,34 @@ a {
     font-family: georgia;
 }
 
+.bodytext {
+    width: 60%;
+    margin: auto;
+    padding-bottom: 15px;
+}
+
+.createButton {
+    border: 2px solid black;
+    border-radius: 5%;
+    margin: 10px;
+}
+
+.textBox {
+    display: none;
+}
+
+.clearButton {
+    display: none;
+}
+
+textarea {
+    font-family: cambria;
+}
+
+.buttonRow {
+    display: inline;
+}
+
 .bottomnav {
     position: fixed;
     bottom: 0;

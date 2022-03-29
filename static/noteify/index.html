@@ -24,8 +24,47 @@
 
     <div class = "mainbody">
         <h2 style = "margin-top: 0;">Noteify</h2>
-        <p>Start taking note!</p>
+        <p class = "bodytext">Start taking note! This is where you can create a note and save it to the server
+            so that you can view it at any time! <u>Start by clicking "Create"</u>. </p>
 
+    <!-- Create button -->
+    <button class = "createButton" name = "showText" type = "button" onclick = "showText()">Create</button> <br><br>
+    <!-- Script to make textbox appear upon click -->
+    <script>
+
+        // Function to show elements upon click for note creation
+        function showText() {
+            document.getElementById('clearText').className = "show";
+            document.getElementById('submitNote').className = "show"; 
+            document.getElementById('noteInput').className = "show"; }
+
+        // Function to clear textbox upon click
+        function clearText() {
+            document.getElementById('noteInput').value = ""; }
+
+        // Function to send data to server
+        function submitNote() {
+            
+        }
+    </script>
+
+    <!-- Textbox for user input -->
+    <textarea placeholder = "Start writing..." class = "textBox" id = "noteInput" name = "textInput"
+    rows = "10" cols = "70" wrap = "physical"></textarea>
+
+    <!-- Div style for inline buttons -->
+    <div class = "buttonRow">
+        <!-- Clear button for textbox --> <br>
+        <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "clearButton" 
+        id = "clearText"  type = "button" onclick = "clearText()">Clear</button>
+
+        <!-- Submit button for note -->
+        <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "clearButton" 
+        id = "submitNote"  type = "button" onclick = "submitNote()">Submit Note</button>
+    </div>
+
+
+    <!-- location bar at the bottom of the page -->
     <div style = "position: relative; text-align: center">
         <a href = "https://noteify.azurewebsites.net/noteify">
         <p class = "bottomnav"><span style = "border-radius: 10px; padding: 1px; border-width: 1px;
