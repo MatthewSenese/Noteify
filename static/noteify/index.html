@@ -39,9 +39,10 @@
             document.getElementById('titleInput').className = "show"; 
             document.getElementById('noteInput').className = "show"; }
 
-        // Function to clear textbox upon click
+        // Function to clear textboxes upon click
         function clearText() {
-            document.getElementById('noteInput').value = ""; }
+            document.getElementById('noteInput').value = "";
+            document.getElementById('titleInput').value = ""; }
 
         // Function to send data to server
         function submitNote() {
@@ -57,8 +58,9 @@
     <textarea placeholder = "Start writing... (required)" class = "textBox" id = "noteInput" name = "textInput"
     rows = "10" cols = "70" wrap = "physical"></textarea>
 
-    <!-- Div style for inline buttons -->
+    <!-- Div styling for options buttons -->
     <div class = "buttonRow">
+
         <!-- Clear button for textbox --> <br>
         <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "clearButton" 
         id = "clearText"  type = "button" onclick = "clearText()">Clear</button>
@@ -67,7 +69,6 @@
         <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "clearButton" 
         id = "submitNote"  type = "button" onclick = "submitNote()">Submit Note</button>
     </div>
-
 
     <!-- location bar at the bottom of the page -->
     <div style = "position: relative; text-align: center">
