@@ -46,7 +46,18 @@
 
         // Function to send data to server
         function submitNote() {
-            
+
+            // Quick input validation
+            const note = document.getElementById('noteInput').value;
+            const title = document.getElementById('titleInput').value;
+            if (note == "" && title == "") {
+                alert("ERROR: Missing required field(s)")
+            } else {
+                // Submit note to server
+                alert("Submitting...")
+                // Send here....
+
+            }
         }
     </script>
 
