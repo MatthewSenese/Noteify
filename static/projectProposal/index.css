@@ -7,6 +7,12 @@ body {
     background-color: rgb(221, 221, 221);
 }
 
+li {
+    text-align: center;
+    list-style-type: square;
+    list-style-position: inside;
+}
+
 .navbar {
     font-family: tahoma;
     font-size: 16px;
