@@ -104,3 +104,8 @@ textarea {
     font-family: fire;
     font-size: 16px;
 }
+
+.hide {
+    display: none;
+    list-style-type: none;
+}

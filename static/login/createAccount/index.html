@@ -14,25 +14,26 @@
         <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
     </ul>
 
-        <!-- Script for functions -->
-        <script>
-            function submit() {
-                const uName = document.getElementById("newUsername").value;
-                const pWord = document.getElementById("newPassword").value;
-                const pWord2 = document.getElementById("newPassword2").value;
-                if (uName == "" || pWord == "" || pWord2 == "") {
-                    alert("ERROR: Missing required field(s)")
-                }
-                else if (pWord != pWord2) {
-                    alert("ERROR: Passwords must be the same")
-                } 
-                else {
-                    // Submit username and password to server
-                    alert("Loggin in")
-                }
+    <!-- Script for functions -->
+    <script>
+        function login() {
+            alert("hi")
+            const uName = document.getElementById("newUsername").value;
+            const pWord = document.getElementById("newPassword").value;
+            const pWord2 = document.getElementById("newPassword2").value;
+            if (uName == "" || pWord == "" || pWord2 == "") {
+                alert("ERROR: Missing required field(s)")
             }
+            else if (pWord != pWord2) {
+                alert("ERROR: Passwords must be the same")
+            } 
+            else {
+                // Submit username and password to server
+                alert("Logging in")
+            }
+        }
             
-        </script>
+    </script>
 
     <!-- Header -->
     <body>
@@ -66,7 +67,7 @@
     </p>
 
     <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
-    id = "Submit"  type = "button" onclick = "submit()">Submit</button>
+    id = "Submit" type = "button" onclick = "login()">Login</button>
 
     </body>
 
