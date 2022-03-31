@@ -17,6 +17,21 @@
         <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
+    <!-- Script for functions -->
+    <script>
+        function submit() {
+            const uName = document.getElementById("username").value;
+            const pWord = document.getElementById("password").value;
+            if (uName == "" || pWord == "") {
+                alert("ERROR: Missing required field(s)")
+            } else {
+                // Submit username and password to server
+                alert("Loggin in")
+            }
+        }
+        
+    </script>
+
     <!-- Header -->
     <body>
         <h1 class = "toptitle">Noteify</h1>
@@ -37,6 +52,9 @@
                 <input type = "text" id="password" placeholder = "Password" name = "password">            
         </div>
     </p>
+
+    <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
+        id = "Submit"  type = "button" onclick = "submit()">Submit</button>
 
     <p>
         Don't have an account? Create one <a href="https://noteify.azurewebsites.net/login/createAccount"><u>here!</u></a>
