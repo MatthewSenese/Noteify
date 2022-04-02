@@ -13,21 +13,29 @@
     <ul class = "navbar">
         <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
         <li><a href="https://noteify.azurewebsites.net/login">Login</a></li>
-        <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
         <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
     <!-- Script for functions -->
     <script>
-        function submit() {
-            const uName = document.getElementById("username").value;
-            const pWord = document.getElementById("password").value;
+        async function login() {
+            // Collect variables
+            const uName = document.getElementById("username").value
+            const pWord = document.getElementById("password").value
+
             if (uName == "" || pWord == "") {
                 alert("ERROR: Missing required field(s)")
             } else {
                 // Submit username and password to server
-                alert("Loggin in")
+                alert("Loggin in")             
+                // create fetch string with variables and send
+                const fetchString = "/login?username="+uName+"&password="+pWord
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+                console.log(responseText)
+                return responseText
             }
+
         }
         
     </script>
@@ -54,7 +62,7 @@
     </p>
 
     <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
-        id = "Submit"  type = "button" onclick = "submit()">Submit</button>
+        id = "Submit" type = "button" onclick = "login()">Login</button>
 
     <p>
         Don't have an account? Create one <a href="https://noteify.azurewebsites.net/login/createAccount"><u>here!</u></a>

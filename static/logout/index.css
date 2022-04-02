@@ -1,0 +1,78 @@
+.html {
+    background-color: rgb(221, 221, 221);
+}
+
+.navbar {
+    font-family: tahoma;
+    font-size: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar li {
+    display: inline;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.navbar a:hover {
+    background-color: grey;
+    color: white;
+}
+
+
+.toptitle {
+    font-size: 40px;
+    margin-bottom: 0; 
+    margin-top: 5px; 
+    font-family: strike;
+    text-align: center;
+}
+
+.topsubtitle {
+    font-size: 14px;
+    font-family: georgia;
+    margin-top: 2px;
+    text-align: center;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'strike';
+    src: url(fonts/strike.ttf)
+}
+
+@font-face {
+    font-family: 'fire';
+    src: url(fonts/fire.ttf)
+}
+
+.mainbody {
+    padding: 20px;
+    width: 90%;
+    margin: auto;
+    background-color: rgb(207, 207, 207);
+    border-radius: 10px;
+    text-align: center;
+    font-family: georgia;
+}
+
+.bottomnav {
+    position: fixed;
+    bottom: 0;
+    width: 88%;
+    font-family: fire;
+    font-size: 16px;
+}

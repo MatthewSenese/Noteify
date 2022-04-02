@@ -9,6 +9,13 @@ app.use(express.static(__dirname + '/static'))
 const port = process.env.PORT || 8080;
 
 
+app.get('/login', (req, res) => {
+	var inputs = url.parse(request.url, true).query
+	const userName = (inputs.username)
+	const passWord = (inputs.password)
+
+    res.render("noteify");
+});
 
 // custom 500 page
 app.use((err, request, response, next) => {
