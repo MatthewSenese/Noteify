@@ -16,7 +16,7 @@
 
     <!-- Script for functions -->
     <script>
-        function login() {
+        async function createAccount() {
             const uName = document.getElementById("newUsername").value;
             const pWord = document.getElementById("newPassword").value;
             const pWord2 = document.getElementById("newPassword2").value;
@@ -28,7 +28,11 @@
             } 
             else {
                 // Submit username and password to server
-                alert("Logging in")
+                const fetchString = "/login?newUsername="+uName+"&newPassword="+pWord+"&newPassword2"+pWord2
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+                console.log(responseText)
+                return responseText
             }
         }
             
@@ -66,7 +70,7 @@
     </p>
 
     <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
-    id = "Submit" type = "button" onclick = "login()">Login</button>
+    id = "Submit" type = "button" onclick = "createAccount()">Create Account</button>
 
     </body>
 

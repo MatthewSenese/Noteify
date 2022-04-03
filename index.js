@@ -13,8 +13,12 @@ app.get('/login', (req, res) => {
 	var inputs = url.parse(request.url, true).query
 	const userName = (inputs.username)
 	const passWord = (inputs.password)
+});
 
-    res.render("noteify");
+app.get('/create-account', (req, res) => {
+	var inputs = url.parse(request.url, true).query
+	const UserName = (inputs.newUsername)
+	const PassWord = (inputs.newPassword)
 });
 
 // custom 500 page
