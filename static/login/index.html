@@ -27,7 +27,11 @@
                 alert("ERROR: Missing required field(s)")
             } else {
                 // Submit username and password to server
-                alert("Loggin in")             
+                alert("Loggin in")
+                
+                // to redirect users; remove alert function above
+                window.location.href = 'https://noteify.azurewebsites.net/noteify/';
+                
                 // create fetch string with variables and send
                 const fetchString = "/login?username="+uName+"&password="+pWord
                 const response = await fetch(fetchString)
