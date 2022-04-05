@@ -1,4 +1,4 @@
-//The More You Know Final Project
+//Noteify Final Project
 
 // use express and create app object
 const express = require('express')

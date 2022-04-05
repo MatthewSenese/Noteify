@@ -11,8 +11,9 @@
 
     <!-- Navigation Bar -->
     <ul class = "navbar">
+        <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
+        <li><a href="https://noteify.azurewebsites.net/logout">Logout</a></li>
         <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
-        <li><a href="https://noteify.azurewebsites.net/notes">Notes</a></li>
         <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
@@ -20,19 +21,24 @@
     <body>
         <h1 class = "toptitle">Noteify</h1>
         <p class = "topsubtitle">Start Taking Note</p>
-    
+
     <div class = "mainbody">
-        <h2 style = "margin-top: 0;">Logout</h2>
-        
-    </p>
+        <h2 style = "margin-top: 0;">My Notes</h2>
+        <p class = "bodytext">View my notes! This is the place where you can view your notes!. </p>
 
-    <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
-        id = "Submit"  type = "button" onclick = "location.href='https://noteify.azurewebsites.net/';">Logout</button>
 
+    <!-- Div styling for options buttons -->
+    <div class = "dropdown">
+        <label class="dropbtn" for="notes">View Notes</label>
+        <select class="dropdown-content" name="notes" id="notes">
+    
+    </div>
+
+    <!-- location bar at the bottom of the page -->
     <div style = "position: relative; text-align: center">
-        <a href = "https://noteify.azurewebsites.net/logout">
+        <a href = "https://noteify.azurewebsites.net/noteify">
         <p class = "bottomnav"><span style = "border-radius: 10px; padding: 1px; border-width: 1px;
-        background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/logout&nbsp;</span></p></a>
+        background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/notes&nbsp;</span></p></a>
     </div>
 
     </body>
