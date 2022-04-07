@@ -1,5 +1,25 @@
 //Noteify Final Project
 
+var fb = require('firebase')
+
+//initialize the app
+var appIni = fb.initializeApp({
+  apiKey: "AIzaSyBQZNSXZK1EVIoez75smdeqEgS3yu3rwi0",
+  authDomain: "noteify-d7193.firebaseapp.com",
+  databaseURL: "https://noteify-d7193-default-rtdb.firebaseio.com/",
+  projectId: "noteify-d7193",
+  storageBucket: "noteify-d7193.appspot.com",
+  messagingSenderId: "259103554370",
+  appId: "1:259103554370:web:bb31e247835601343266db",
+  measurementId: "G-DXJET6RER1"
+});
+
+//
+var firebaseDB = fb.database()
+
+// Theoretically add data to firebase 
+firebaseDB.ref("user").set("password")
+
 // use express and create app object
 const express = require('express')
 const app = express()
