@@ -4,7 +4,6 @@
 var fb = require('firebase')
 
 // initialize the app
-
 var appIni = fb.initializeApp({
   apiKey: "AIzaSyBQZNSXZK1EVIoez75smdeqEgS3yu3rwi0",
   authDomain: "noteify-d7193.firebaseapp.com",
@@ -24,7 +23,6 @@ const app = express()
 var url = require('url')
 app.use(express.static(__dirname + '/static'))
 const port = process.env.PORT || 8080;
-
 
 // main function to send data to the firebase database
 app.get('/submitNote', (request, response) => {
@@ -52,7 +50,6 @@ app.get('/login', (request, response) => {
   promise.catch(e => alert(e.message));
 
   alert("Signed in " + email);
-
 });
 
 app.get('/createAccount', (request, response) => {
