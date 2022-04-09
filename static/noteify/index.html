@@ -47,7 +47,7 @@
             document.getElementById('titleInput').value = ""; }
 
         // Function to send data to server
-        function submitNote() {
+        async function submitNote() {
 
             const note = document.getElementById('noteInput').value;
             const title = document.getElementById('titleInput').value;
@@ -72,13 +72,9 @@
             else if (note == "" && title == "") {
                 alert("ERROR: Your note and title are empty!")
             } else {
-
-            
                 // Submit note to server
-                alert("Submitting...")
-                // Send here....
-                
-
+                const fetchString = "/submitNote?title="+title+"&note="+note
+                const response = await fetch(fetchString)
             }
         }
     </script>
@@ -111,7 +107,4 @@
     </div>
 
     </body>
-
-   
-
     </html>
