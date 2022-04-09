@@ -73,8 +73,11 @@
                 alert("ERROR: Your note and title are empty!")
             } else {
                 // Submit note to server
-                const fetchString = "/submitNote?title="+title+"&note="+note
-                const response = await fetch(fetchString)
+                let text = "Are you sure you'd like to submit this note?\nClick OK to submit or Cancel"
+                if (confirm(text) == true) {
+                    const fetchString = "/submitNote?title="+title+"&note="+note
+                    const response = await fetch(fetchString)
+                }
             }
         }
     </script>
@@ -107,4 +110,5 @@
     </div>
 
     </body>
+    
     </html>

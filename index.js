@@ -35,7 +35,7 @@ app.get('/submitNote', (request, response) => {
 
   // send data to database
   // user ref below will be replaced with username.
-  firebaseDB.ref("user2/").set({theTitle: title, theNote: note });
+  firebaseDB.ref("username/").set({theTitle: title, theNote: note });
 })
 
 app.get('/login', (req, res) => {
