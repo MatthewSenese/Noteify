@@ -19,6 +19,15 @@
         <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
+    <!-- Script for functions -->
+    <script>
+
+        async function logout() {
+            const fetchString = "/logout"
+            const response = await fetch(fetchString)
+        }
+    </script>
+
     <!-- Header -->
     <body>
         <h1 class = "toptitle">Noteify</h1>
@@ -30,7 +39,7 @@
     </p>
 
     <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
-        id = "Submit"  type = "button" onclick = "location.href='https://noteify.azurewebsites.net/';">Logout</button>
+        id = "Submit"  type = "button" onclick = "logout()">Logout</button>
 
     <div style = "position: relative; text-align: center">
         <a href = "https://noteify.azurewebsites.net/logout">

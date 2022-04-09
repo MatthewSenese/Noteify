@@ -23,26 +23,17 @@
     <script>
         async function login() {
             // Collect variables
-            const uName = document.getElementById("username").value
-            const pWord = document.getElementById("password").value
+            const email = document.getElementById("email").value
+            const password = document.getElementById("password").value
 
-            if (uName == "" || pWord == "") {
+            if (email == "" || password == "") {
                 alert("ERROR: Missing required field(s)")
             } else {
-                // Submit username and password to server
-                // Redirects users after successful login
-                window.location.href = 'https://noteify.azurewebsites.net/noteify/';
-                
-                // create fetch string with variables and send
-                const fetchString = "/login?username="+uName+"&password="+pWord
+                // Submit email and password to server
+                const fetchString = "/login?email="+email+"&password="+password
                 const response = await fetch(fetchString)
-                const responseText = await response.text()
-                console.log(responseText)
-                return responseText
             }
-
-        }
-        
+        }       
     </script>
 
     <!-- Header -->
@@ -55,8 +46,8 @@
         <!-- Input boxes for username and password -->
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "usernameForm" class = "user-name" action="">
-                <label class = "usernameBox" for = "username"></label>
-                <input type = "text" id="username" placeholder = "Username" name = "username">            
+                <label class = "usernameBox" for = "email"></label>
+                <input type = "text" id="email" placeholder = "Email" name = "email">            
         </div>
 
         <div style = "margin-top: -1px; padding-bottom: 8px;">
@@ -66,8 +57,15 @@
         </div>
     </p>
 
+    <div class = "buttonRow">
+        <!-- Button to login -->
     <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
         id = "Submit" type = "button" onclick = "login()">Login</button>
+
+        <!-- Button to create an account -->
+    <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
+        id = "createAccount"  type = "button" onclick = "location.href='https://noteify.azurewebsites.net/login/createAccount';">Create Account</button>
+    </div>
 
     <p>
         Don't have an account? Create one <a href="https://noteify.azurewebsites.net/login/createAccount"><u>here!</u></a>

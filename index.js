@@ -1,8 +1,10 @@
 //Noteify Final Project
 
+// import firebase module
 var fb = require('firebase')
 
-//initialize the app
+// initialize the app
+
 var appIni = fb.initializeApp({
   apiKey: "AIzaSyBQZNSXZK1EVIoez75smdeqEgS3yu3rwi0",
   authDomain: "noteify-d7193.firebaseapp.com",
@@ -11,34 +13,57 @@ var appIni = fb.initializeApp({
   storageBucket: "noteify-d7193.appspot.com",
   messagingSenderId: "259103554370",
   appId: "1:259103554370:web:bb31e247835601343266db",
-  measurementId: "G-DXJET6RER1"
-});
+  measurementId: "G-DXJET6RER1" });
 
-//
+// create firebase instance
 var firebaseDB = fb.database()
-
-// Theoretically add data to firebase 
-firebaseDB.ref("user").set("password")
 
 // use express and create app object
 const express = require('express')
 const app = express()
-
 var url = require('url')
 app.use(express.static(__dirname + '/static'))
 const port = process.env.PORT || 8080;
 
 
-app.get('/login', (req, res) => {
+// main function to send data to the firebase database
+app.get('/submitNote', (request, response) => {
+
+  // get title and note data from static page
+  var inputs = url.parse(request.url, true).query
+  const title = (inputs.title)
+  const note = (inputs.note)
+  // get username and put it as ref below
+
+  // send data to database
+  // user ref below will be replaced with username.
+  firebaseDB.ref("username/").set({theTitle: title, theNote: note });
+})
+
+// Functions for user authenticaiton
+
+app.get('/login', (request, response) => {
+  // Get the email and password from static page
 	var inputs = url.parse(request.url, true).query
-	const userName = (inputs.username)
-	const passWord = (inputs.password)
+	const email = (inputs.email)
+	const password = (inputs.password)
+
+  const promise = firebaseDB.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
+  promise.catch(e => alert(e.message));
+
+  alert("Signed in " + email);
+
 });
 
-app.get('/create-account', (req, res) => {
+app.get('/createAccount', (request, response) => {
 	var inputs = url.parse(request.url, true).query
-	const UserName = (inputs.newUsername)
-	const PassWord = (inputs.newPassword)
+	const email = (inputs.email)
+	const password = (inputs.password)
+
+  const promise = firebaseDB.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
+  promise.catch(e => alert(e.message));
+
+  alert("Account created successfully");
 });
 
 // custom 500 page

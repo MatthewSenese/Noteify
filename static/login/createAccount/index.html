@@ -21,23 +21,22 @@
 
     <!-- Script for functions -->
     <script>
+
         async function createAccount() {
-            const uName = document.getElementById("newUsername").value;
-            const pWord = document.getElementById("newPassword").value;
-            const pWord2 = document.getElementById("newPassword2").value;
-            if (uName == "" || pWord == "" || pWord2 == "") {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var password2 = document.getElementById("password2").value;
+            
+            if (email == "" || password == "" || password2 == "") {
                 alert("ERROR: Missing required field(s)")
             }
-            else if (pWord != pWord2) {
+            else if (password != password2) {
                 alert("ERROR: Passwords must be the same")
             } 
             else {
                 // Submit username and password to server
-                const fetchString = "/login?newUsername="+uName+"&newPassword="+pWord+"&newPassword2"+pWord2
+                const fetchString = "/createAccount?email="+email+"&password="+password+"&password2"+password2
                 const response = await fetch(fetchString)
-                const responseText = await response.text()
-                console.log(responseText)
-                return responseText
             }
         }
             
@@ -52,30 +51,30 @@
         <h2 style = "margin-top: 0;">Create Noteify Account</h2><br>
 
         <!-- Input boxes for username and password -->
-        <h3>Enter a fun username: </h3>
+        <h3>Enter your email: </h3>
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "usernameForm" class = "user-name" action="">
-                <label class = "usernameBox" for = "newUsername"></label>
-                <input type = "text" id="newUsername" placeholder = "Username" name = "newUsername">            
+                <label class = "usernameBox" for = "email"></label>
+                <input type = "text" id="email" placeholder = "Email" name = "email">            
         </div>
 
         <h3>Enter a password: </h3>
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "passwordForm" class = "pass-word" action="">
-                <label class = "passwordBox" for = "newPassword"></label>
-                <input type = "text" id="newPassword" placeholder = "Password" name = "newPassword">            
+                <label class = "passwordBox" for = "password"></label>
+                <input type = "text" id="password" placeholder = "Password" name = "password">            
         </div>
 
         <h3>Enter the same password: </h3>
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "passwordForm" class = "pass-word" action="">
-                <label class = "passwordBox" for = "newPassword"></label>
-                <input type = "text" id="newPassword2" placeholder = "Repeat Password" name = "newPassword">            
+                <label class = "passwordBox" for = "password2"></label>
+                <input type = "text" id="password2" placeholder = "Repeat Password" name = "password2">            
         </div>
     </p>
 
     <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
-    id = "Submit" type = "button" onclick = "createAccount()">Create Account</button>
+    id = "createAccount" type = "button" onclick = "createAccount()">Create Account</button>
 
     </body>
 
