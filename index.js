@@ -46,10 +46,8 @@ app.get('/login', (request, response) => {
 	const email = (inputs.email)
 	const password = (inputs.password)
 
-  const promise = firebaseDB.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
-  promise.catch(e => alert(e.message));
+  fb.auth().signInWithEmailAndPassword(email, password)
 
-  alert("Signed in " + email);
 });
 
 app.get('/createAccount', (request, response) => {
@@ -57,10 +55,8 @@ app.get('/createAccount', (request, response) => {
 	const email = (inputs.email)
 	const password = (inputs.password)
 
-  const promise = firebaseDB.auth().createUserWithEmailAndPassword(inputs.email, inputs.password)
-  promise.catch(e => alert(e.message));
+  fb.auth().createUserWithEmailAndPassword(email, password)
 
-  alert("Account created successfully");
 });
 
 // custom 500 page
