@@ -35,7 +35,7 @@ app.get('/submitNote', (request, response) => {
 
   // send data to database
   // user ref below will be replaced with username.
-  firebaseDB.ref("username/").set({theTitle: title, theNote: note });
+  firebaseDB.ref("users/").set({theTitle: title, theNote: note });
 })
 
 // Functions for user authenticaiton
@@ -47,15 +47,20 @@ app.get('/login', (request, response) => {
 	const password = (inputs.password)
 
   fb.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      var theUser = userCredential.user;
-
-      /*  this not working rn
-      const user = fb.auth().currentUser;
-      let email = user.email;
-      response.type('text/plain')
-      response.send(email) */
-    })
+  
+  .then(function()  {
+    var user = fb.auth.currentUser
+    var databaseRef = firebaseDB.ref()
+    var userData = {
+      lastLogin : Date.now()
+    }
+    databaseRef.child('users/' + user.uid).update(userData)
+  })
+  .catch(function(error) {
+    var errorCode = error.code
+    var errorMessage = error.message
+    
+  })
 });
 
 app.get('/createAccount', (request, response) => {
@@ -64,18 +69,24 @@ app.get('/createAccount', (request, response) => {
 	const password = (inputs.password)
 
   fb.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      var theUser = userCredential.user;
-
-      // This simply prints the email entered when the button is pushed
-      // to prove that the user object holds values, like email,
-      // which we can use
-      const user = fb.auth().currentUser;
-      let email = user.email;
-      response.type('text/plain')
-      response.send(email) 
+  .then(function() {
+    var user = fb.auth.currentUser
+    var databaseRef = firebaseDB.ref()
+    var userData = {
+      email : email,
+      lastLogin : Date.now()
+    }
+    databaseRef.child('users/' + user.uid).set(userData)
+  })
+  .catch(function(error) {
+    var errorCode = error.code
+    var errorMessage = error.message
     
-    })
+  })
+});
+
+app.get('/logout', (request, response) => {
+  fb.auth().signOut
 });
 
 // custom 500 page

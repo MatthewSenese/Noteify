@@ -26,12 +26,15 @@
             const email = document.getElementById("email").value
             const password = document.getElementById("password").value
             const password2 = document.getElementById("password2").value
+            expression = /^[^@]+@\w+(\.\w+)+\w$/
 
             if (email == "" || password == "" || password2 == "") {
                 alert("ERROR: Missing required field(s)")
             } else if (password != password2) {
                 alert("ERROR: Passwords must match")
-            } else {
+            } else if (expression.test(email) == false) {
+                alert("ERROR: Enter an email")
+            }else {
                 // Submit email and password to server
                 const fetchString = "/createAccount?email="+email+"&password="+password
                 const response = await fetch(fetchString)
@@ -75,7 +78,8 @@
     </p>
 
     <button style = "border: 2px solid black; border-radius: 5%; margin: 10px;" class = "submitButton" 
-    id = "createAccount" type = "button" onclick = "create()">Create Account</button>
+    id = "createAccount" type = "button" onclick = "create()">Create Account</button><br>
+
 
     </body>
 
