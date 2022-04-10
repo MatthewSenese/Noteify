@@ -29,9 +29,11 @@
             if (email == "" || password == "") {
                 alert("ERROR: Missing required field(s)")
             } else {
-                // Submit email and password to server
+                // Submit email and password to server to sign in
                 const fetchString = "/login?email="+email+"&password="+password
                 const response = await fetch(fetchString)
+                const responseText = await response.text()
+                
             }
         }       
     </script>

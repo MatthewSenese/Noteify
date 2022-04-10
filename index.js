@@ -47,7 +47,15 @@ app.get('/login', (request, response) => {
 	const password = (inputs.password)
 
   fb.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      var theUser = userCredential.user;
 
+      /*  this not working rn
+      const user = fb.auth().currentUser;
+      let email = user.email;
+      response.type('text/plain')
+      response.send(email) */
+    })
 });
 
 app.get('/createAccount', (request, response) => {
@@ -56,7 +64,18 @@ app.get('/createAccount', (request, response) => {
 	const password = (inputs.password)
 
   fb.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      var theUser = userCredential.user;
 
+      // This simply prints the email entered when the button is pushed
+      // to prove that the user object holds values, like email,
+      // which we can use
+      const user = fb.auth().currentUser;
+      let email = user.email;
+      response.type('text/plain')
+      response.send(email) 
+    
+    })
 });
 
 // custom 500 page
