@@ -55,6 +55,7 @@ app.get('/login', (request, response) => {
       // else, give error message: already logged
     }
   });
+
   // Get the email and password from static page
 	var inputs = url.parse(request.url, true).query
 	const email = (inputs.email)
@@ -95,19 +96,27 @@ app.get('/createAccount', (request, response) => {
   .catch(function(error) {
     var errorCode = error.code
     var errorMessage = error.message
+
+    if (error) {
+      response.type('text/plain')
+      response.send(errorMessage)
+    }
+
   })
 });
 
 // Function to check if user is logged in. If they are, return their email.
-app.get('/islogged', (request, response) => {
+app.get('/islogged', (request, response, next) => {
   fb.auth().onAuthStateChanged(function(user) {
+    
     if (user) {
-      const email = user.email
-      response.type('text/plain')
-      return response.send(email)
+        const email = user.email
+        response.send(email)
+        next()
+        
     } else {
-      response.type('text/plain')
-      return response.send("NoLog")
+        response.send("NoLog")
+        next()
     }
   });
 });

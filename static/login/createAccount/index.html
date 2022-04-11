@@ -20,7 +20,7 @@
         <li><a href="https://noteify.azurewebsites.net/logout">Logout</a></li>
         <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
         <li><a href="https://noteify.azurewebsites.net/notes">Notes</a></li>
-        <li<a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
+        <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
     <!-- Script for functions -->
@@ -33,34 +33,48 @@
             const password2 = document.getElementById("password2").value
             expression = /^[^@]+@\w+(\.\w+)+\w$/
 
-            if (email == "" || password == "" || password2 == "") {
-                alert("ERROR: Missing required field(s)")
-            } else if (password != password2) {
-                alert("ERROR: Passwords must match")
-            } else if (expression.test(email) == false) {
-                alert("ERROR: Enter an email")
-            }else {
-                // Submit email and password to server
-                const fetchString = "/createAccount?email="+email+"&password="+password
-                const response = await fetch(fetchString)
-                const responseText = await response.text()
+            // check if user is logged in, don't allow account creation if they are
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            if (responseText == "NoLog") {
 
-                // if we get something back, that means user creation and log in is successful, so reroute to noteify
-                if (responseText) {
-                    alert("Account creation successful!")
-                    //location.href = 'http://localhost:8080/noteify';
-                    location.href = 'https://noteify.azurewebsites.net/noteify/';
-                }
-            }   
+                if (email == "" || password == "" || password2 == "") {
+                    alert("ERROR: Missing required field(s)")
+                } else if (password != password2) {
+                    alert("ERROR: Passwords must match")
+                } else if (expression.test(email) == false) {
+                    alert("ERROR: Enter an email")
+                } else {
+                    // Submit email and password to server
+                    const fetchString = "/createAccount?email="+email+"&password="+password
+                    const response = await fetch(fetchString)
+                    const responseText = await response.text()
+
+                    // if we get something back without an "@" symbol, it returned an error, so display it.
+                    if (!responseText.includes("@")) {
+                        alert(responseText)
+                    // if we get something back, that means user creation and log in is successful, so reroute to noteify
+                    } else {
+                        alert("Account creation successful!\nClick OK to proceed.")
+                        //location.href = 'http://localhost:8080/noteify';
+                        location.href = 'https://noteify.azurewebsites.net/noteify/';
+                    } 
+                }  
+            } else {
+                // display error message if user tries to make an account while already logged in
+                alert("You are already logged in!\n")
+            }
         }
 
     </script>
 
     <script>
 
-        window.onload = function() {
-        welcMsg(); };
+        // automatically call welcome message function upon page load
+        window.onload = function() { welcMsg(); };
 
+        // function that, if user is logged in, displays welcome message
         async function welcMsg() {
 
             const fetchString = "/islogged?"
