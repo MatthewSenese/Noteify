@@ -47,7 +47,6 @@ app.get('/login', (request, response) => {
 	const password = (inputs.password)
 
   fb.auth().signInWithEmailAndPassword(email, password)
-  
   .then(function()  {
     var user = fb.auth.currentUser
     var databaseRef = firebaseDB.ref()

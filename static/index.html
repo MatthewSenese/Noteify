@@ -9,6 +9,25 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
     </head>
 
+    <!-- Welcome email message PROTOTYPE -->
+    <input style = "position: absolute; top: 10px; left: 10px; width: auto;
+    font-family: fire; background-color: transparent; border: none" 
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "30">
+
+    <script>
+
+        /* text that shows user is logged in, initially hidden until logged in */
+        document.getElementById('loggedInAs').className = "hideIt";
+        document.getElementById('loggedInAs').value = "Welcome, " + email
+        
+        /* If user is logged in, show the element
+        if (user is logged in) {
+            document.getElementById('loggedInAs').className = "show"; } */
+
+        /* CSS changes: added loggedIn class and added body class with 20px top padding */
+
+    </script>
+
     <!-- Navigation Bar -->
     <ul class = "navbar">
         <li><a href="https://noteify.azurewebsites.net/">Home</a></li>

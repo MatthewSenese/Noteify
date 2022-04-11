@@ -2,6 +2,10 @@
     background-color: rgb(221, 221, 221);
 }
 
+body {
+    padding-top: 20px;
+}
+
 .navbar {
     font-family: tahoma;
     font-size: 16px;
@@ -84,4 +88,15 @@ a {
 
 .hideIt {
     display: none;
+}
+
+.loggedIn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: auto;
+    font-family: fire;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
 }
