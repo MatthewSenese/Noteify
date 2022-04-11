@@ -22,8 +22,16 @@
     <!-- Script for functions -->
     <script>
         async function logout() {
-            const fetchString = "/logout"
+            const fetchString = "/logout?"
             const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            if (responseText == "out") {
+                alert("Logged out")
+            } else {
+                alert("Not Logged Out")
+            }
+
         }
     </script>
 

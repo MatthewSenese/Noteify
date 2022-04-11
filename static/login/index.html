@@ -16,12 +16,13 @@
         <li><a href="https://noteify.azurewebsites.net/logout">Logout</a></li>
         <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
         <li><a href="https://noteify.azurewebsites.net/notes">Notes</a></li>
-        <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
+        <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
     <!-- Script for functions -->
     <script>
         async function login() {
+            
             // Collect variables
             const email = document.getElementById("email").value
             const password = document.getElementById("password").value
@@ -33,7 +34,6 @@
                 const fetchString = "/login?email="+email+"&password="+password
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
-                
             }
         }       
     </script>

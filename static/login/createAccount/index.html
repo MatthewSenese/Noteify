@@ -16,7 +16,7 @@
         <li><a href="https://noteify.azurewebsites.net/logout">Logout</a></li>
         <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
         <li><a href="https://noteify.azurewebsites.net/notes">Notes</a></li>
-        <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
+        <li<a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
     <!-- Script for functions -->
@@ -39,8 +39,13 @@
                 const fetchString = "/createAccount?email="+email+"&password="+password
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
-                alert("Your email is: " + responseText)
-                
+
+                // if we get something back, that means user creation and log in is successful, so reroute to noteify
+                if (responseText) {
+                    alert("Account creation successful!")
+                    location.href = 'http://localhost:8080/noteify';
+                    //location.href = 'https://noteify.azurewebsites.net/noteify/';
+                }
             }   
         }  
             
@@ -78,7 +83,6 @@
     </p>
 
     <button class = "submitButton" id = "createAccount" type = "button" onclick = "create()">Create Account</button><br>
-
 
     </body>
 
