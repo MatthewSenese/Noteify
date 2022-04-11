@@ -45,6 +45,16 @@ app.get('/submitNote', (request, response) => {
 })
 
 app.get('/login', (request, response) => {
+
+  // get logged in state
+  fb.auth().onAuthStateChanged((user) => {
+    // if user is NOT logged in, allow them to log in 
+    if (!user) {
+      
+    } else {
+      // else, give error message: already logged
+    }
+  });
   // Get the email and password from static page
 	var inputs = url.parse(request.url, true).query
 	const email = (inputs.email)
@@ -57,7 +67,7 @@ app.get('/login', (request, response) => {
     var userData = {
       lastLogin : Date.now()
     }
-    databaseRef.child('users/' + user.uid).update(userData)  // THIS IS BROKE< NEED TO FIX LATER
+    databaseRef.child('users/' + user.uid).update(userData)
   })
   .catch(function(error) {
     var errorCode = error.code
@@ -94,10 +104,10 @@ app.get('/islogged', (request, response) => {
     if (user) {
       const email = user.email
       response.type('text/plain')
-      response.send(email)
+      return response.send(email)
     } else {
       response.type('text/plain')
-      response.send("NoLog")
+      return response.send("NoLog")
     }
   });
 });

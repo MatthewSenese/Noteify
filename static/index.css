@@ -2,10 +2,6 @@
     background-color: rgb(221, 221, 221);
 }
 
-body {
-    padding-top: 20px;
-}
-
 .navbar {
     font-family: tahoma;
     font-size: 16px;
@@ -84,6 +80,10 @@ a {
     width: 88%;
     font-family: fire;
     font-size: 16px;
+}
+
+body {
+    padding-top: 20px;
 }
 
 .hideIt {
