@@ -34,13 +34,12 @@
                 alert("ERROR: Passwords must match")
             } else if (expression.test(email) == false) {
                 alert("ERROR: Enter an email")
-            }else {
+            } else {
                 // Submit email and password to server
                 const fetchString = "/createAccount?email="+email+"&password="+password
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
                 alert("Your email is: " + responseText)
-                
             }   
         }  
             
@@ -66,14 +65,14 @@
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "passwordForm" class = "pass-word" action="">
                 <label class = "passwordBox" for = "password"></label>
-                <input type = "text" id="password" placeholder = "Password" name = "password">            
+                <input type = "password" id="password" placeholder = "Password" name = "password">            
         </div>
 
         <h3>Enter the same password: </h3>
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "passwordForm" class = "pass-word" action="">
                 <label class = "passwordBox" for = "password2"></label>
-                <input type = "text" id="password2" placeholder = "Repeat Password" name = "password2">            
+                <input type = "password" id="password2" placeholder = "Repeat Password" name = "password2">            
         </div>
     </p>
 

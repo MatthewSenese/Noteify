@@ -33,21 +33,35 @@ app.get('/submitNote', (request, response) => {
   const note = (inputs.note)
   // get username and put it as ref below
 
-  // send data to database
-  // user ref below will be replaced with username.
-  firebaseDB.ref("users/").set({theTitle: title, theNote: note });
+  // send data to database with currently logged in user
+  fb.auth().onAuthStateChanged(function(user) {
+    if (user) {
+
+      // user ID identifies user in database with their title and notes
+      var uid = user.uid
+      firebaseDB.ref(`${uid}/` + title).set({ theNote: note});
+    }
+  });
 })
 
-// Functions for user authenticaiton
-
 app.get('/login', (request, response) => {
+
+  // get logged in state
+  fb.auth().onAuthStateChanged((user) => {
+    // if user is NOT logged in, allow them to log in 
+    if (!user) {
+      
+    } else {
+      // else, give error message: already logged
+    }
+  });
+
   // Get the email and password from static page
 	var inputs = url.parse(request.url, true).query
 	const email = (inputs.email)
 	const password = (inputs.password)
 
   fb.auth().signInWithEmailAndPassword(email, password)
-  
   .then(function()  {
     var user = fb.auth.currentUser
     var databaseRef = firebaseDB.ref()
@@ -59,7 +73,6 @@ app.get('/login', (request, response) => {
   .catch(function(error) {
     var errorCode = error.code
     var errorMessage = error.message
-    
   })
 });
 
@@ -70,23 +83,56 @@ app.get('/createAccount', (request, response) => {
 
   fb.auth().createUserWithEmailAndPassword(email, password)
   .then(function() {
-    var user = fb.auth.currentUser
-    var databaseRef = firebaseDB.ref()
-    var userData = {
-      email : email,
-      lastLogin : Date.now()
-    }
-    databaseRef.child('users/' + user.uid).set(userData)
+
+    // if creation is successful, check if user is logged in and return user ID.
+    fb.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const email = user.email;
+        response.type('text/plain')
+        response.send(email) }
+    });
   })
+  // need to make errors more meaningful, give user feedback.
   .catch(function(error) {
     var errorCode = error.code
     var errorMessage = error.message
-    
+
+    if (error) {
+      response.type('text/plain')
+      response.send(errorMessage)
+    }
+
   })
 });
 
+// Function to check if user is logged in. If they are, return their email.
+app.get('/islogged', (request, response, next) => {
+  fb.auth().onAuthStateChanged(function(user) {
+    
+    if (user) {
+        const email = user.email
+        response.send(email)
+        next()
+        
+    } else {
+        response.send("NoLog")
+        next()
+    }
+  });
+});
+
+// this function is broken atm
 app.get('/logout', (request, response) => {
-  fb.auth().signOut
+  fb.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      fb.auth().signOut(user)
+      response.type('text/plain')
+      response.send("out")
+    } else {
+      response.type('text/plain')
+      response.send("noLogOut")
+    }
+  });
 });
 
 // custom 500 page
