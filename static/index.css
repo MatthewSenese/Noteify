@@ -82,6 +82,21 @@ a {
     font-size: 16px;
 }
 
+body {
+    padding-top: 20px;
+}
+
 .hideIt {
     display: none;
+}
+
+.loggedIn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: auto;
+    font-family: fire;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
 }

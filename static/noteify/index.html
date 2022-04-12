@@ -9,6 +9,10 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
     </head>
 
+    <input style = "position: absolute; top: 10px; left: 10px; width: auto;
+    font-family: fire; background-color: transparent; border: none" 
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "30">
+
     <!-- Navigation Bar -->
     <ul class = "navbar">
         <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
@@ -29,17 +33,27 @@
         <p class = "bodytext">Start taking note! This is where you can create a note and save it to the server
             so that you can view it at any time! <u>Start by clicking "Create"</u>. </p>
 
-    <!-- Create button -->
-    <button class = "createButton" name = "showText" type = "button" onclick = "showText()">Create</button> <br><br>
-
     <script>
 
         // Function to show elements upon click for note creation
-        function showText() {
-            document.getElementById('clearText').className = "show";
-            document.getElementById('submitNote').className = "show";
-            document.getElementById('titleInput').className = "show"; 
-            document.getElementById('noteInput').className = "show"; }
+        async function showText() {
+            
+            // request to the server to check if user is logged in
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            
+            // if user is not logged in, show the note creation elements
+            if (responseText != "NoLog") { 
+                document.getElementById('clearText').className = "show";
+                document.getElementById('submitNote').className = "show";
+                document.getElementById('titleInput').className = "show";
+                document.getElementById('noteInput').className = "show"; 
+            } else {
+                // redirect to login page
+                location.href = 'https://noteify.azurewebsites.net/login/';
+            }
+        }
 
         // Function to clear textboxes upon click
         function clearText() {
@@ -51,16 +65,6 @@
 
             const note = document.getElementById('noteInput').value;
             const title = document.getElementById('titleInput').value;
-
-            // Allows user to create a note IFF they are logged in
-            /*
-            //If user is not logged in, create button will redirect them to login page
-            if (user =! loggedIn) {
-                window.location.href = 'https://noteify.azurewebsites.net/noteify/';
-            }
-            else:
-                Indent the code beneath to be in this else block
-            */
 
             // Detailed input validation
             if (note == "" && title != "") {
@@ -81,6 +85,30 @@
             }
         }
     </script>
+
+    <script>
+
+        window.onload = function() {
+        welcMsg(); };
+
+        async function welcMsg() {
+
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            
+            document.getElementById('loggedInAs').value = "Welcome, " + responseText
+            document.getElementById('loggedInAs').className = "hideIt";
+
+            if (responseText.length > 6) {
+                document.getElementById('loggedInAs').className = "show";
+            }
+        }
+
+    </script>
+
+    <!-- Create button -->
+    <button class = "createButton" name = "showText" type = "button" onclick = "showText()">Create</button> <br><br>
 
     <!-- Textbox for Title line -->
     <textarea  style = "line-height: 10px; resize: none" placeholder = "Title... (required)" class = "textBox" id = "titleInput" name = "titleInput"

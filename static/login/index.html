@@ -9,6 +9,10 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
     </head>
 
+    <input style = "position: absolute; top: 10px; left: 10px; width: auto;
+    font-family: fire; background-color: transparent; border: none" 
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "30">
+
     <!-- Navigation Bar -->
     <ul class = "navbar">
         <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
@@ -16,12 +20,13 @@
         <li><a href="https://noteify.azurewebsites.net/logout">Logout</a></li>
         <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
         <li><a href="https://noteify.azurewebsites.net/notes">Notes</a></li>
-        <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
+        <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
     <!-- Script for functions -->
     <script>
         async function login() {
+            
             // Collect variables
             const email = document.getElementById("email").value
             const password = document.getElementById("password").value
@@ -33,9 +38,29 @@
                 const fetchString = "/login?email="+email+"&password="+password
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
-                
             }
         }       
+    </script>
+
+    <script>
+
+        window.onload = function() {
+        welcMsg(); };
+
+        async function welcMsg() {
+
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            document.getElementById('loggedInAs').value = "Welcome, " + responseText
+            document.getElementById('loggedInAs').className = "hideIt";
+
+            if (responseText.length > 6) {
+                document.getElementById('loggedInAs').className = "show";
+            }
+        }
+
     </script>
 
     <!-- Header -->
@@ -55,7 +80,7 @@
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "passwordForm" class = "pass-word" action="">
                 <label class = "passwordBox" for = "password"></label>
-                <input type = "text" id="password" placeholder = "Password" name = "password">            
+                <input type = "password" id="password" placeholder = "Password" name = "password">            
         </div>
     </p>
 

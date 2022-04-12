@@ -9,6 +9,10 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
     </head>
 
+    <input style = "position: absolute; top: 10px; left: 10px; width: auto;
+    font-family: fire; background-color: transparent; border: none" 
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "30">
+
     <!-- Navigation Bar -->
     <ul class = "navbar">
         <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
@@ -22,9 +26,37 @@
     <!-- Script for functions -->
     <script>
         async function logout() {
-            const fetchString = "/logout"
+            const fetchString = "/logout?"
             const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            if (responseText == "out") {
+                alert("Logged out")
+            } else {
+                alert("Not Logged Out")
+            }
         }
+    </script>
+
+    <script>
+
+        // automatically call welcome message function upon page load
+        window.onload = function() { welcMsg(); };
+
+        async function welcMsg() {
+
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            document.getElementById('loggedInAs').value = "Welcome, " + responseText
+            document.getElementById('loggedInAs').className = "hideIt";
+
+            if (responseText.length > 6) {
+                document.getElementById('loggedInAs').className = "show";
+            }
+        }
+
     </script>
 
     <!-- Header -->
