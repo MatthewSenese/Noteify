@@ -44,17 +44,7 @@ app.get('/submitNote', (request, response) => {
   });
 })
 
-app.get('/login', (request, response) => {
-
-  // get logged in state
-  fb.auth().onAuthStateChanged((user) => {
-    // if user is NOT logged in, allow them to log in 
-    if (!user) {
-      
-    } else {
-      // else, give error message: already logged
-    }
-  });
+app.get('/loginUser', (request, response) => {
 
   // Get the email and password from static page
 	var inputs = url.parse(request.url, true).query
@@ -62,17 +52,18 @@ app.get('/login', (request, response) => {
 	const password = (inputs.password)
 
   fb.auth().signInWithEmailAndPassword(email, password)
-  .then(function()  {
-    var user = fb.auth.currentUser
-    var databaseRef = firebaseDB.ref()
-    var userData = {
-      lastLogin : Date.now()
-    }
-    databaseRef.child('users/' + user.uid).update(userData)
+  .then((userCredential) =>  {
+    var user = userCredential.user
+    const email1 = user.email
+    response.send(email1)
   })
-  .catch(function(error) {
-    var errorCode = error.code
+
+  .catch((error) => {
     var errorMessage = error.message
+    if (error) {
+      response.type('text/plain')
+      response.send(errorMessage)
+    }
   })
 });
 
@@ -101,7 +92,6 @@ app.get('/createAccount', (request, response) => {
       response.type('text/plain')
       response.send(errorMessage)
     }
-
   })
 });
 
@@ -122,17 +112,11 @@ app.get('/islogged', (request, response, next) => {
 });
 
 // this function is broken atm
-app.get('/logout', (request, response) => {
-  fb.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      fb.auth().signOut(user)
-      response.type('text/plain')
-      response.send("out")
-    } else {
-      response.type('text/plain')
-      response.send("noLogOut")
-    }
-  });
+app.get('/logoutUser', (request, response) => {
+
+  fb.auth().signOut().then(() => {
+    response.send("out")
+  })
 });
 
 // custom 500 page

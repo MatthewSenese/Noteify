@@ -26,14 +26,26 @@
     <!-- Script for functions -->
     <script>
         async function logout() {
-            const fetchString = "/logout?"
-            const response = await fetch(fetchString)
-            const responseText = await response.text()
 
-            if (responseText == "out") {
-                alert("Logged out")
+            // check presence of welcome message to see if user is logged in, and if so, let them log out
+            const indicator = document.getElementById('loggedInAs').className;
+            if (indicator == "show") {
+
+                // send request to server with nothing it in
+                const fetchString = "/logoutUser?"
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+
+                // if server sends back string containing "out", it was successful. Reroute to home page
+                if (responseText == "out") {
+                    alert("Logged out")
+                    //location.href = 'http://localhost:8080/';
+                    location.href = 'https://noteify.azurewebsites.net/';
+                }
             } else {
-                alert("Not Logged Out")
+                // if server did not send anything back, that means it was not successful. Reroute to login page
+                alert("You are not logged in!\nClick OK to go to the login page")
+                location.href = 'https://noteify.azurewebsites.net/login';
             }
         }
     </script>

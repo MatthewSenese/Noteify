@@ -23,21 +23,47 @@
         <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
     </ul>
 
-    <!-- Script for functions -->
     <script>
-        async function login() {
-            
-            // Collect variables
-            const email = document.getElementById("email").value
-            const password = document.getElementById("password").value
 
-            if (email == "" || password == "") {
-                alert("ERROR: Missing required field(s)")
+        // Function to log the user in
+        async function loginUser() {
+
+            // check presence of welcome message to see if user is logged in, and if not, let them log in
+            const indicator = document.getElementById('loggedInAs').className;
+            if (indicator != "show") {
+                
+                // Collect variables
+                let email = document.getElementById("email").value
+                
+                const password = document.getElementById("password").value
+
+                if (email == "" || password == "") {
+                    alert("ERROR: Missing required field(s)")
+                    
+                } else {
+                    // Submit email and password to server to sign in
+                    const fetchString = "/loginUser?email="+email+"&password="+password
+                    const response = await fetch(fetchString)
+                    const responseText = await response.text()
+
+                    // if we don't get an email back, create custom error message from presence of default one containing "record"
+                    if (!responseText.includes("@")) {
+                        if (responseText.includes("record")) {
+                            alert("Account does not exist. Click OK to create an account")
+                            location.href = 'https://noteify.azurewebsites.net/login/createAccount';
+                        } else {
+                        alert(responseText) }
+                    // if we get an email back, then user is logged in with message and rerouted to noteify page
+                    } else {
+                        alert("Login successful!\nClick OK to proceed.")
+                        //location.href = 'http://localhost:8080/noteify';
+                        location.href = 'https://noteify.azurewebsites.net/noteify/';
+                    }
+                }
+            // if the indicator has a classname other than "hideIt", it means the user is not logged in. Reroute them to login.
             } else {
-                // Submit email and password to server to sign in
-                const fetchString = "/login?email="+email+"&password="+password
-                const response = await fetch(fetchString)
-                const responseText = await response.text()
+                alert("You are already logged in!")
+                location.href = 'https://noteify.azurewebsites.net/noteify/';
             }
         }       
     </script>
@@ -86,7 +112,7 @@
 
     <div class = "buttonRow">
         <!-- Button to login -->
-    <button class = "submitButton" id = "Submit" type = "button" onclick = "login()">Login</button>
+    <button class = "submitButton" id = "Submit" type = "button" onclick = "loginUser()">Login</button>
 
         <!-- Button to create an account -->
     <button class = "submitButton" id = "createAccount"  type = "button" 
