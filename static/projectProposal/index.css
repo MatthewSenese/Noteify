@@ -14,7 +14,7 @@ li {
 }
 
 .navbar {
-    font-family: tahoma;
+    font-family: fire;
     font-size: 16px;
     list-style: none;
     margin: 0;
@@ -40,7 +40,6 @@ a {
 
 .navbar a:hover {
     background-color: grey;
-    color: white;
 }
 
 
@@ -65,6 +64,16 @@ a {
     src: url(fonts/strike.ttf)
 }
 
+@font-face {
+    font-family: 'fire';
+    src: url(fonts/fire.ttf)
+}
+
+@font-face {
+    font-family: 'lato';
+    src: url(fonts/lato.ttf)
+}
+
 .mainbody {
     padding: 20px;
     width: 90%;
@@ -73,4 +82,16 @@ a {
     border-radius: 10px;
     text-align: center;
     font-family: georgia;
+}
+
+.icon {
+    background: none;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0%;
+    text-decoration: none;
+    margin-bottom: -1px;
 }
