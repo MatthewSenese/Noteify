@@ -14,13 +14,19 @@
     class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "30">
 
     <!-- Navigation bar to get back to home page -->
-    <ul class="navbar">
-        <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
-        <li><a href="https://noteify.azurewebsites.net/login">Login</a></li>
-        <li><a href="https://noteify.azurewebsites.net/logout">Logout</a></li>
-        <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
-        <li><a href="https://noteify.azurewebsites.net/notes">Notes</a></li>
-        <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
+    <ul class = "navbar">
+        <li><a href="https://noteify.azurewebsites.net/"><img style = "padding-right: 5px;" src = "./icons/home.png" 
+            alt = "homeIcon" class = "icon"><span style = "font-size: 14px">Home</span></a></li>
+        <li><a href="https://noteify.azurewebsites.net/login"><img style = "padding-right: 5px;" src = "./icons/login.png" 
+            alt = "loginIcon" class = "icon"><span style = "font-size: 14px">Login</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/logout"><img style = "padding-right: 5px;" src = "./icons/logout.png" 
+            alt = "logoutIcon" class = "icon"><span style = "font-size: 14px">Logout</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
+            alt = "noteifyIcon" class = "icon"><span style = "font-size: 14px">Noteify</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/notes"><img style = "padding-right: 5px;" src = "./icons/view.png" 
+            alt = "viewIcon" class = "icon"><span style = "font-size: 14px">View</span></a></li></a></li>
+        <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal"><img style = "padding-right: 5px;" src  = "./icons/about.png" 
+            alt = "aboutIcon" class = "icon"><span style = "font-size: 14px">About</span></a></li></a></li>
     </ul>
 
     <!-- Script for functions -->
@@ -97,28 +103,28 @@
         <p class = "topsubtitle">Start Taking Note</p>
     
     <div class = "mainbody">
-        <h2 style = "margin-top: 0;">Create Noteify Account</h2><br>
+        <h2 style = "margin-top: 0; font-family: lato;">Create Noteify Account</h2>
 
         <!-- Input boxes for username and password -->
-        <h3>Enter your email: </h3>
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "usernameForm" class = "user-name" action="">
-                <label class = "usernameBox" for = "email"></label>
-                <input type = "text" id="email" placeholder = "Email" name = "email">            
+                <label class = "usernameBox" for = "email"><img style = "padding-right: 5px;" src = "./icons/email.png" 
+                    alt = "homeIcon" class = "icon2"></label>
+                <input type = "text" id="email" placeholder = "Enter your email" name = "email">            
         </div>
 
-        <h3>Enter a password: </h3>
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "passwordForm" class = "pass-word" action="">
-                <label class = "passwordBox" for = "password"></label>
-                <input type = "password" id="password" placeholder = "Password" name = "password">            
+                <label class = "passwordBox" for = "password"><img style = "padding-right: 5px;" src = "./icons/password.png" 
+                    alt = "homeIcon" class = "icon2"></label>
+                <input type = "password" id="password" placeholder = "Enter a password" name = "password">            
         </div>
 
-        <h3>Enter the same password: </h3>
         <div style = "margin-top: -1px; padding-bottom: 8px;">
             <form name = "passwordForm" class = "pass-word" action="">
-                <label class = "passwordBox" for = "password2"></label>
-                <input type = "password" id="password2" placeholder = "Repeat Password" name = "password2">            
+                <label class = "passwordBox" for = "password2"><img style = "padding-right: 5px;" src = "./icons/password.png" 
+                    alt = "homeIcon" class = "icon2"></label>
+                <input type = "password" id="password2" placeholder = "Re-enter password" name = "password2">            
         </div>
     </p>
 

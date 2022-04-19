@@ -3,7 +3,7 @@
 }
 
 .navbar {
-    font-family: tahoma;
+    font-family: fire;
     font-size: 16px;
     list-style: none;
     margin: 0;
@@ -25,11 +25,23 @@ a {
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
+    border-radius: 10px;
 }
 
 .navbar a:hover {
-    background-color: grey;
-    color: white;
+    background-color: rgb(196, 196, 196);
+}
+
+.icon {
+    background: none;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0%;
+    text-decoration: none;
+    margin-bottom: -1px;
 }
 
 .toptitle {
@@ -41,11 +53,23 @@ a {
 }
 
 .topsubtitle {
-    font-size: 14px;
-    font-family: georgia;
+    font-size: 16px;
+    font-family: lato;
     margin-top: 2px;
     text-align: center;
     font-weight: bold;
+}
+
+input[type=text] {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[type=password] {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 @font-face {
@@ -56,6 +80,11 @@ a {
 @font-face {
     font-family: 'fire';
     src: url(fonts/fire.ttf)
+}
+
+@font-face {
+    font-family: 'lato';
+    src: url(fonts/lato.ttf)
 }
 
 .mainbody {
@@ -69,6 +98,7 @@ a {
 }
 
 .bodytext {
+    font-family: lato;
     padding: 10px;
     width: 60%;
     margin: auto;

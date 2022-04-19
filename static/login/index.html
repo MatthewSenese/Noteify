@@ -15,12 +15,18 @@
 
     <!-- Navigation Bar -->
     <ul class = "navbar">
-        <li><a href="https://noteify.azurewebsites.net/">Home</a></li>
-        <li><a href="https://noteify.azurewebsites.net/login">Login</a></li>
-        <li><a href="https://noteify.azurewebsites.net/logout">Logout</a></li>
-        <li><a href="https://noteify.azurewebsites.net/noteify">Noteify</a></li>
-        <li><a href="https://noteify.azurewebsites.net/notes">Notes</a></li>
-        <li><a href="https://noteify.azurewebsites.net/projectProposal">About</a></li>
+        <li><a href="https://noteify.azurewebsites.net/"><img style = "padding-right: 5px;" src = "./icons/home.png" 
+            alt = "homeIcon" class = "icon"><span style = "font-size: 14px">Home</span></a></li>
+        <li><a href="https://noteify.azurewebsites.net/login"><img style = "padding-right: 5px;" src = "./icons/login.png" 
+            alt = "loginIcon" class = "icon"><span style = "font-size: 14px">Login</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/logout"><img style = "padding-right: 5px;" src = "./icons/logout.png" 
+            alt = "logoutIcon" class = "icon"><span style = "font-size: 14px">Logout</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
+            alt = "noteifyIcon" class = "icon"><span style = "font-size: 14px">Noteify</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/notes"><img style = "padding-right: 5px;" src = "./icons/view.png" 
+            alt = "viewIcon" class = "icon"><span style = "font-size: 14px">View</span></a></li></a></li>
+        <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal"><img style = "padding-right: 5px;" src  = "./icons/about.png" 
+            alt = "aboutIcon" class = "icon"><span style = "font-size: 14px">About</span></a></li></a></li>
     </ul>
 
     <script>
@@ -95,17 +101,19 @@
         <p class = "topsubtitle">Start Taking Note</p>
     
     <div class = "mainbody">
-        <h2 style = "margin-top: 0;">Login</h2>
+        <h2 style = "margin-top: 0; font-family: lato;">Login</h2>
         <!-- Input boxes for username and password -->
         <div style = "margin-top: -1px; padding-bottom: 8px;">
-            <form name = "usernameForm" class = "user-name" action="">
-                <label class = "usernameBox" for = "email"></label>
+            <form name = "usernameForm" class = "inputBox" action="">
+                <label class = "usernameBox" for = "email"><img style = "padding-right: 5px;" src = "./icons/email.png" 
+                    alt = "homeIcon" class = "icon2"></label></label>
                 <input type = "text" id="email" placeholder = "Email" name = "email">            
         </div>
 
         <div style = "margin-top: -1px; padding-bottom: 8px;">
-            <form name = "passwordForm" class = "pass-word" action="">
-                <label class = "passwordBox" for = "password"></label>
+            <form name = "passwordForm" class = "inputBox" action="">
+                <label class = "passwordBox" for = "password"><img style = "padding-right: 5px;" src = "./icons/password.png" 
+                    alt = "homeIcon" class = "icon2"></label></label>
                 <input type = "password" id="password" placeholder = "Password" name = "password">            
         </div>
     </p>
@@ -119,8 +127,7 @@
     onclick = "location.href='https://noteify.azurewebsites.net/login/createAccount';">Create Account</button>
     </div>
 
-    <p>
-        Don't have an account? Create one <a href="https://noteify.azurewebsites.net/login/createAccount"><u>here!</u></a>
+    <p style = "font-family: lato">Don't have an account? Create one <a href="https://noteify.azurewebsites.net/login/createAccount"><u>here!</u></a>
     </p><br>
 
 

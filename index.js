@@ -24,6 +24,7 @@ var url = require('url')
 app.use(express.static(__dirname + '/static'))
 const port = process.env.PORT || 8080;
 
+
 // main function to send data to the firebase database
 app.get('/submitNote', (request, response) => {
 

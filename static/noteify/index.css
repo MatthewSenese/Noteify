@@ -3,7 +3,7 @@
 }
 
 .navbar {
-    font-family: tahoma;
+    font-family: fire;
     font-size: 16px;
     list-style: none;
     margin: 0;
@@ -25,13 +25,25 @@ a {
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
+    border-radius: 10px;
 }
 
 .navbar a:hover {
-    background-color: grey;
-    color: white;
+    background-color: rgb(196, 196, 196);
 }
 
+
+.icon {
+    background: none;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0%;
+    text-decoration: none;
+    margin-bottom: -1px;
+}
 
 .toptitle {
     font-size: 40px;
@@ -42,11 +54,23 @@ a {
 }
 
 .topsubtitle {
-    font-size: 14px;
-    font-family: georgia;
+    font-size: 16px;
+    font-family: lato;
     margin-top: 2px;
     text-align: center;
     font-weight: bold;
+}
+
+input[type=text] {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[type=password] {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 @font-face {
@@ -59,6 +83,11 @@ a {
     src: url(fonts/fire.ttf)
 }
 
+@font-face {
+    font-family: 'lato';
+    src: url(fonts/lato.ttf)
+}
+
 .mainbody {
     padding: 20px;
     width: 90%;
@@ -66,7 +95,7 @@ a {
     background-color: rgb(207, 207, 207);
     border-radius: 10px;
     text-align: center;
-    font-family: georgia;
+    font-family: lato;
 }
 
 .bodytext {
@@ -77,8 +106,23 @@ a {
 
 .createButton {
     border: 2px solid black;
-    border-radius: 5%;
-    margin: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.clearButton {
+    border: 2px solid black;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+    margin: 5px;
     cursor: pointer;
 }
 
