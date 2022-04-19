@@ -6,7 +6,11 @@
         <meta charset = 'UTF-8'>
         <title>Noteify</title>
         <link rel = "stylesheet" href = "index.css">
+        <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js"></script>
+
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+
     </head>
 
     <input style = "position: absolute; top: 10px; left: 10px; width: auto;
@@ -73,7 +77,31 @@
         <p class = "bottomnav"><span style = "border-radius: 10px; padding: 1px; border-width: 1px;
         background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/notes&nbsp;</span></p></a>
     </div>
+    <div id ="root"></div>
+    <script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyBQZNSXZK1EVIoez75smdeqEgS3yu3rwi0",
+        authDomain: "noteify-d7193.firebaseapp.com",
+        databaseURL: "https://noteify-d7193-default-rtdb.firebaseio.com",
+        projectId: "noteify-d7193",
+        storageBucket: "noteify-d7193.appspot.com",
+        messagingSenderId: "259103554370",
+        appId: "1:259103554370:web:bb31e247835601343266db",
+        measurementId: "G-DXJET6RER1"
+};
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+var firebaseRef = firebase.database().ref("uk8FjYIV53Y8huMN7huGMhb7kGA2")
+firebaseRef.on("value", function(snapshot) {
+    snapshot.forEach(function(element) {
+        document.querySelector('#root').innerHTML +=
+        <div>${element.val()}</div>
+    });
+})
+   
+
+</script>
     </body>
 
     </html>
