@@ -39,12 +39,14 @@ app.get('/submitNote', (request, response) => {
     if (user) {
 
       // user ID identifies user in database with their title and notes
+      
       var uid = user.uid
       firebaseDB.ref(`${uid}/` + title).set({ theNote: note});
     }
   });
 })
 
+// Log user in
 app.get('/loginUser', (request, response) => {
 
   // Get the email and password from static page
@@ -68,6 +70,7 @@ app.get('/loginUser', (request, response) => {
   })
 });
 
+// Create user account
 app.get('/createAccount', (request, response) => {
 	var inputs = url.parse(request.url, true).query
 	const email = (inputs.email)
@@ -84,9 +87,7 @@ app.get('/createAccount', (request, response) => {
         response.send(email) }
     });
   })
-  // need to make errors more meaningful, give user feedback.
   .catch(function(error) {
-    var errorCode = error.code
     var errorMessage = error.message
 
     if (error) {
@@ -112,13 +113,27 @@ app.get('/islogged', (request, response, next) => {
   });
 });
 
-// this function is broken atm
+// Log the user out
 app.get('/logoutUser', (request, response) => {
 
   fb.auth().signOut().then(() => {
     response.send("out")
   })
 });
+
+// Delete user account and notes (not working right now)
+app.get('/deleteAccount', (request, response) => {
+  var user = fb.auth().currentUser;
+
+  user.delete().then(function() {
+    response.send("good")
+  }).catch(function(error) {
+    var errorMessage = error.message
+    response.send(errorMessage)
+  });
+});
+
+
 
 // custom 500 page
 app.use((err, request, response, next) => {

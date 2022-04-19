@@ -55,8 +55,24 @@ a {
     cursor: pointer;
 }
 
+.deleteButton {
+    border: 2px solid rgb(222, 70, 70);
+    background-color: rgb(255, 143, 143);
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
 .submitButton:active {
     transform: translateY(4px);
+}
+
+.buttonRow {
+    display: inline;
 }
 
 .toptitle {

@@ -115,23 +115,8 @@ input[type=password] {
     cursor: pointer;
 }
 
-.clearButton {
-    border: 2px solid black;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 6px;
-    padding-right: 6px;
-    border-radius: 10px;
-    margin: 5px;
-    cursor: pointer;
-}
-
 .createButton:active {
     transform: translateY(4px);
-}
-
-.clearButton {
-    display: none;
 }
 
 .textBox {

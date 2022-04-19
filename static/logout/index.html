@@ -54,6 +54,32 @@
                 location.href = 'https://noteify.azurewebsites.net/login';
             }
         }
+
+        function deleteAcc() {
+            const indicator = document.getElementById('loggedInAs').className;
+            if (indicator == "show") {
+               /* document.getElementById('areYouTitle').className = "show";
+                document.getElementById('areYouBody').className = "show";
+                document.getElementById('deleteButton').className = "show";*/ // Hiding these until delete function is fixed.
+            } else {
+                alert("You are not logged in!")
+                location.href = 'https://noteify.azurewebsites.net/login';
+            }
+        }
+
+        async function deleteAccount() {
+            alert("This button is currently out-of-service")
+            alert("Are you sure? This cannot be undone.\nClick OK to delete Account")
+            if (confirm(text) == true) {
+                const fetchString = "/deleteAccount?"
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+                if (responseText) {
+                    location.href = 'http://localhost:8080/';
+                }
+            }
+        }
+
     </script>
 
     <script>
@@ -72,6 +98,7 @@
 
             if (responseText.length > 6) {
                 document.getElementById('loggedInAs').className = "show";
+                document.getElementById('loggedInAs').className = "show";
             }
         }
 
@@ -86,8 +113,21 @@
         <h2 style = "margin-top: 0; font-family: lato;">Goodbye</h2>
         
     </p>
+    <div class = "buttonRow">
+        <button class = "submitButton" id = "Submit"  type = "button" onclick = "logout()">Logout</button>
+        <button class = "deleteButton" id = "Delete"  type = "button" onclick = "deleteAcc()">Delete</button>
+    </div>
 
-    <button class = "submitButton" id = "Submit"  type = "button" onclick = "logout()">Logout</button>
+    <div class = "mainbody">
+        <h2 style = "margin-top: 0; margin-bottom: 0; font-family: lato;" class = "hideIt" id = "areYouTitle">Are you sure?</h2>
+        <p style = "padding: 20px; width: 90%; margin: auto; background-color: rgb(207, 207, 207); border-radius: 10px;
+        text-align: center; font-family: lato;" class = "hideIt" id = "areYouBody">Deleting your account cannot be undone, and all your associated 
+        notes will be deleted as well. Click the button below to continue.</p>
+    </div>
+    
+    <button style = "border: 2px solid rgb(222, 70, 70); background-color: rgb(255, 143, 143); padding-top: 4px; padding-bottom: 4px;
+        padding-left: 6px; padding-right: 6px; border-radius: 10px; margin: 5px; cursor: pointer; " id = "deleteButton"  type = "button" 
+        onclick = "deleteAccount()" class = "hideIt">Delete Account</button>
 
     <div style = "position: relative; text-align: center">
         <a href = "https://noteify.azurewebsites.net/logout">
