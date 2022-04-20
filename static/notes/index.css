@@ -142,7 +142,7 @@ input[type=password] {
     background-color: rgb(207, 207, 207);
     border-radius: 10px;
     text-align: center;
-    font-family: georgia;
+    font-family: lato;
 }
 
 .bodytext {
@@ -153,8 +153,17 @@ input[type=password] {
 
 .createButton {
     border: 2px solid black;
-    border-radius: 5%;
-    margin: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.createButton:active {
+    transform: translateY(4px);
 }
 
 .textBox {

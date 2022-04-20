@@ -9,14 +9,36 @@
         <link rel="icon" type="image/x-icon" href="./icons/fav.PNG">
         <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js"></script>
-
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 
     </head>
 
     <input style = "position: absolute; top: 10px; left: 10px; width: auto;
     font-family: fire; background-color: transparent; border: none" 
-    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "30">
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "40">
+
+    <script>
+
+        // Function to show elements upon click for note creation
+        async function showEls() {
+            
+            // request to the server to check if user is logged in
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            
+            // if user is not logged in, show the note display elements
+            if (responseText != "NoLog") {
+                document.getElementById('titleOutput').className = "show";
+                document.getElementById('noteOutput').className = "show";
+                document.getElementById('editNoteID').className = "show";
+                document.getElementById('deleteNoteID').className = "show"; 
+            } else {
+                // redirect to login page
+                location.href = 'https://noteify.azurewebsites.net/login/';
+            }
+        }
+    </script>
 
     <script>
 
@@ -62,15 +84,10 @@
 
     <div class = "mainbody">
         <h2 style = "margin-top: 0; font-family: lato;">My Notes</h2>
-        <p class = "bodytext">View my notes! This is the place where you can view your notes!. </p>
+        <p class = "bodytext">Welcome to the view page! Here, you can view, edit, and delete all your previously saved notes!
+            Click "View" to begin.
+        </p>
 
-
-    <!-- Div styling for options buttons -->
-    <div class = "dropdown">
-        <label class="dropbtn" for="notes">View Notes</label>
-        <select class="dropdown-content" name="notes" id="notes">
-    
-    </div>
 
     <!-- location bar at the bottom of the page -->
     <div style = "position: relative; text-align: center">
@@ -78,6 +95,31 @@
         <p class = "bottomnav"><span style = "border-radius: 10px; padding: 1px; border-width: 1px;
         background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/notes&nbsp;</span></p></a>
     </div>
+
+    <button class = "createButton" name = "showText" type = "button" onclick = "showEls()">View</button> <br><br>
+
+    <!-- Textbox for Title line -->
+    <textarea  style = "line-height: 10px; resize: none" class = "textBox" id = "titleOutput" name = "titleInput"
+    rows = "1" cols = "35" wrap = "physical"></textarea><br><br>
+
+    <!-- Textbox for user input -->
+    <textarea class = "textBox" id = "noteOutput" name = "textInput"
+    rows = "10" cols = "70" wrap = "physical"></textarea>
+
+    <!-- Div styling for options buttons -->
+    <div class = "buttonRow">
+
+        <!-- Clear button for textbox --> <br>
+        <button style = "border: 2px solid black; padding-top: 4px; border-radius: 10px; margin: 5px; cursor: pointer;
+        padding-bottom: 4px; padding-left: 6px; padding-right: 6px;" class = "hideIt" 
+        id = "editNoteID"  type = "button" onclick = "editNote()">Edit Note</button>
+
+        <!-- Submit button for note -->
+        <button style = "border: 2px solid black; padding-top: 4px; border-radius: 10px; margin: 5px; cursor: pointer;
+        padding-bottom: 4px; padding-left: 6px; padding-right: 6px;" class = "hideIt"
+        id = "deleteNoteID"  type = "button" onclick = "deleteNote()">Delete Note</button>
+    </div>
+
     <div id ="root"></div>
     <script>
     var firebaseConfig = {

@@ -133,8 +133,6 @@ app.get('/deleteAccount', (request, response) => {
   });
 });
 
-
-
 // custom 500 page
 app.use((err, request, response, next) => {
 	console.error(err.message)
