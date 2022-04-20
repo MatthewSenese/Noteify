@@ -22,7 +22,7 @@
             alt = "loginIcon" class = "icon"><span style = "font-size: 14px">Login</span></a></li></a></li>
         <li><a href="https://noteify.azurewebsites.net/logout"><img style = "padding-right: 5px;" src = "./icons/logout.png" 
             alt = "logoutIcon" class = "icon"><span style = "font-size: 14px">Logout</span></a></li></a></li>
-        <li><a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
+        <li style = "background-color: rgb(196, 196, 196)"><a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
             alt = "noteifyIcon" class = "icon"><span style = "font-size: 14px">Noteify</span></a></li></a></li>
         <li><a href="https://noteify.azurewebsites.net/notes"><img style = "padding-right: 5px;" src = "./icons/view.png" 
             alt = "viewIcon" class = "icon"><span style = "font-size: 14px">View</span></a></li></a></li>
@@ -136,6 +136,11 @@
         <button style = "border: 2px solid black; padding-top: 4px; border-radius: 10px; margin: 5px; cursor: pointer;
         padding-bottom: 4px; padding-left: 6px; padding-right: 6px;" class = "hideIt"
         id = "submitNote"  type = "button" onclick = "submitNote()">Submit Note</button>
+
+        <!-- Button to take user to notes page -->
+        <button style = "border: 2px solid black; padding-top: 4px; border-radius: 10px; margin: 5px; cursor: pointer;
+        padding-bottom: 4px; padding-left: 6px; padding-right: 6px;" class = "hideIt"
+        id = "submitNote"  type = "button" onclick = "location.href='https://noteify.azurewebsites.net/notes';">View Notes</button>
     </div>
 
     <!-- location bar at the bottom of the page -->
