@@ -1,0 +1,102 @@
+Definition of "Done":
+	Deployed on the website and functioning with other features of the program. Features are demoable to the product owner and in class.
+
+SPRINT 6
+
+Product Owner - Matthew Senese
+Scrum Master - Matthew O'Malley
+
+User Stories
+
+1. As a customer, I want to be able to create an account for my notes so that I have my own personal notes stored privately. (4sp) (MS)
+
+4. As a customer, I want to be able to log into my account so that I can view my personal notes. (3sp) (MS)
+
+2. As a customer, I want to be able to create a note and submit it so that I can document my data serving as the main functionality of the site. (5sp) (MO)
+
+3. As a customer, I want to be able to save the note to the server so that it can be saved over the internet and not locally. (6sp) (JR)
+
+5. As a customer, I don’t want to be able to submit a note if it’s empty so that I have meaningful data (1sp) (MO)
+
+
+Spikes
+
+As a developer, I want to be able to create a Firebase database system so that notes from users are sent to the server and stored.
+
+
+	Productivity:
+		
+19 story points capacity planned
+Main goals: getting user accounts, notes, and associated database system functional.
+
+
+
+
+
+
+SPRINT 7 
+
+Product Owner - Matthew O’ Malley
+Scrum Master - Jonathan Rayo
+	
+	User Stories
+
+(A)As a user, I want to be able to view my saved notes so that I can see what I have submitted (7sp MO)
+(B)As a user, I want to be able to search my notes by title within the Notes page so that I can find them easier (5sp JR)
+(G)As a user, I want to be able to navigate the pages while staying logged in so that I can fully utilize all the features and log out when I am done. (5sp JR)
+(I)As a user, I want to only be able to access the features of the website while I am logged in, so that my account is more secure (4sp MS)
+(D)As a user, I want to be able to log out of my account so that I am not permanently logged into Noteify (2sp MS)
+(H)As a user, I want to see an indicator that I am logged in or logged out so that my account stays private (4sp MS)
+(F)As a user, I want to be able to ensure that my account was saved onto the database, so that I know the account creation was successful (1sp MO)
+(E)As a user, I want to be able to ensure that my notes are saved to the database, so that I can be sure that note creation was successful. (1sp MO)
+(C)As a user, I want to be warned before I submit a note so that I am sure of its contents (1sp MO)
+
+30 story points total
+9 stories total 
+10 - MO
+10 - MS
+10 - JR
+
+Revised Definition of Done: Demoable on Sunday night but Product Owner can see it during sprint retrospective
+
+
+
+
+
+
+SPRINT 8 
+
+Product Owner - Jonathan Rayo
+Scrum Master - Matthew Senese
+	
+	User Stories
+(E) As a user, I want to be alerted on the view page that I don’t have any notes and be redirected so that I don’t view an empty page. (MO 2sp)
+(C) As a user, I want to be able to cycle through my notes so that I can view each one that I’ve created. (MO 2sp)
+(D) As a user, I would like an indicator for which note I am viewing so that my notes are viewed in a more organized manner (MO 2sp)
+(A) As a user, I want to be able to edit my notes as I’m viewing them, so I can have a full-featured experience without changing pages. (JR 6sp)
+(B) As a user, I would like to be able to delete a note while viewing it, so that I know which note I am deleting, so that I can get rid of those that I do not want anymore (MO 4sp)
+(G) As a user, I want more extensive password requirements so that I am reminded that I need a secure password (MS 2sp)
+(F) As a user, I want to have my email verified when I create an account so that I can’t create accounts with invalid emails. (MS 5sp)
+(H) As a user, I would like to be warned before I delete a note, so that I am sure of my decision to delete my note (MS 2sp)
+(I) As a user, I would like an additional sign in method like github, so that I am not required to use my email (JR 4sp)
+(J) As a user, I want to have a reminder feature so that I can be reminded of specific notes via email/text.(JR 2sp)
+
+31 story points total
+10 stories total 
+10 - MO
+ 9 - MS
+12 - JR
+
+
+
+
+Epics:
+(1)As a customer, I want to be able to create an account, login, and logout of my account with the website so that I can view my personal notes privately.
+(3)As a customer, I want to be able to save and retrieve my notes from the server so that I can view and search my previously written notes and edit them.
+(2)As a customer, I want to be able to create and format my notes so that I can have organization and a personalized experience.
+(4)As a customer, I want the product to be able to evolve beyond the semester so that I can keep using this application when the semester is over
+
+
+Spikes:
+	As a developer, we want to create an authentication system so that user’s notes are personal and private
+	
