@@ -167,7 +167,13 @@ input[type=password] {
 }
 
 .textBox {
-    display: none;
+    border-radius: 10px;
+    padding: 5px;
+    resize: none;
+    border: none;
+    box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);
+    font-family: consolas;
+    
 }
 
 .clearButton {
@@ -212,4 +218,26 @@ body {
     background-color: transparent;
     border: none;
     text-decoration: none;
+}
+
+.arrows {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    background-color: rgb(180, 180, 180);
+    border-radius: 10px;
+}
+
+.arrows:hover {
+    background-color: rgb(135, 135, 135);
+}
+
+.oneOf {
+    font-family: fire;
+    font-size: 16px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    resize: none;
 }

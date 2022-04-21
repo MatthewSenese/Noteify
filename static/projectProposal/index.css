@@ -39,9 +39,9 @@ a {
 }
 
 .navbar a:hover {
-    background-color: grey;
+    background-color: rgb(134, 183, 223);
+    border-radius: 10px;
 }
-
 
 .toptitle {
     font-size: 40px;

@@ -14,37 +14,17 @@
     </head>
 
     <input style = "position: absolute; top: 10px; left: 10px; width: auto;
-    font-family: fire; background-color: transparent; border: none" 
+    font-family: fire; background-color: transparent; border: none; outline: none;" 
     class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "40">
 
     <script>
 
-        // Function to show elements upon click for note creation
-        async function showEls() {
-            
-            // request to the server to check if user is logged in
-            const fetchString = "/islogged?"
-            const response = await fetch(fetchString)
-            const responseText = await response.text()
-            
-            // if user is not logged in, show the note display elements
-            if (responseText != "NoLog") {
-                document.getElementById('titleOutput').className = "show";
-                document.getElementById('noteOutput').className = "show";
-                document.getElementById('editNoteID').className = "show";
-                document.getElementById('deleteNoteID').className = "show"; 
-            } else {
-                // redirect to login page
-                location.href = 'https://noteify.azurewebsites.net/login/';
-            }
-        }
-    </script>
-
-    <script>
-
+        // Functions that activate upon page load
         window.onload = function() {
+        currNote();
         welcMsg(); };
 
+        // Welcome appears if user is logged in
         async function welcMsg() {
 
             const fetchString = "/islogged?"
@@ -59,6 +39,14 @@
             }
         }
 
+        // Function that changes the value of the page counter
+        function currNote() {
+            // Logic done here that will determine which page it is on, and how many there are
+            var cur = "1"
+            var more = "1"
+            document.getElementById('oneOfTag').value = cur + " / " + more;
+        }
+
     </script>
 
     <!-- Navigation Bar -->
@@ -71,8 +59,8 @@
             alt = "logoutIcon" class = "icon"><span style = "font-size: 14px">Logout</span></a></li></a></li>
         <li><a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
             alt = "noteifyIcon" class = "icon"><span style = "font-size: 14px">Noteify</span></a></li></a></li>
-        <li style = "background-color: rgb(196, 196, 196)"><a href="https://noteify.azurewebsites.net/notes"><img style = "padding-right: 5px;" src = "./icons/view.png" 
-            alt = "viewIcon" class = "icon"><span style = "font-size: 14px">View</span></a></li></a></li>
+        <li style = "background-color: rgb(222, 222, 222); padding-top: 10px; padding-bottom: 10px; border-radius: 10px;"><a href="https://noteify.azurewebsites.net/notes">
+            <img style = "padding-right: 5px;" src = "./icons/view.png" alt = "viewIcon" class = "icon"><span style = "font-size: 14px">View</span></a></li></a></li>
         <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal"><img style = "padding-right: 5px;" src  = "./icons/about.png" 
             alt = "aboutIcon" class = "icon"><span style = "font-size: 14px">About</span></a></li></a></li>
     </ul>
@@ -86,7 +74,7 @@
         <h2 style = "margin-top: 0; font-family: lato;">My Notes</h2>
         <p class = "bodytext">Welcome to the view page! Here, you can view, edit, and delete all your previously saved notes!
             Click "View" to begin.
-        </p>
+        </p><br>
 
 
     <!-- location bar at the bottom of the page -->
@@ -96,29 +84,29 @@
         background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/notes&nbsp;</span></p></a>
     </div>
 
-    <button class = "createButton" name = "showText" type = "button" onclick = "showEls()">View</button> <br><br>
-
     <!-- Textbox for Title line -->
-    <textarea  style = "line-height: 10px; resize: none" class = "textBox" id = "titleOutput" name = "titleInput"
-    rows = "1" cols = "35" wrap = "physical"></textarea><br><br>
+    <textarea readonly style = "line-height: 10px; resize: none textarea; height: 1em;" class = "textBox" id = "titleOutput" name = "titleOutput"
+    rows = "1" cols = "25" wrap = "physical" maxlength = "30"></textarea><br><br>
 
     <!-- Textbox for user input -->
-    <textarea class = "textBox" id = "noteOutput" name = "textInput"
-    rows = "10" cols = "70" wrap = "physical"></textarea>
+    <textarea readonly class = "textBox" id = "noteOutput" name = "textInput" rows = "6" cols = "40" wrap = "physical" 
+    maxlength = "300"></textarea>
+    
 
     <!-- Div styling for options buttons -->
     <div class = "buttonRow">
+        <!-- Option buttons at the bottom of each note--> <br><br>
+        <button class = "createButton" id = "editNoteID"  type = "button" onclick = "editNote()">Edit Note</button>
+        <button class = "createButton" id = "deleteNoteID"  type = "button" onclick = "deleteNote()">Delete Note</button>
+    </div><br><br>
 
-        <!-- Clear button for textbox --> <br>
-        <button style = "border: 2px solid black; padding-top: 4px; border-radius: 10px; margin: 5px; cursor: pointer;
-        padding-bottom: 4px; padding-left: 6px; padding-right: 6px;" class = "hideIt" 
-        id = "editNoteID"  type = "button" onclick = "editNote()">Edit Note</button>
+    <!-- Navigation arrows for notes -->
+    <img class = "arrows" src = "./icons/arrowb.png" alt = "backArrow">
+    <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5"></textarea>
+    <img class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow">
 
-        <!-- Submit button for note -->
-        <button style = "border: 2px solid black; padding-top: 4px; border-radius: 10px; margin: 5px; cursor: pointer;
-        padding-bottom: 4px; padding-left: 6px; padding-right: 6px;" class = "hideIt"
-        id = "deleteNoteID"  type = "button" onclick = "deleteNote()">Delete Note</button>
-    </div>
+
+
 
     <div id ="root"></div>
     <script>

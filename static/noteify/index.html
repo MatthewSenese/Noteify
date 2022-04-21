@@ -11,9 +11,10 @@
     </head>
 
     <input style = "position: absolute; top: 10px; left: 10px; width: auto;
-    font-family: fire; background-color: transparent; border: none" 
+    font-family: fire; background-color: transparent; border: none; outline: none;" 
     class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "40">
 
+    <!-- Navigation Bar -->
     <!-- Navigation Bar -->
     <ul class = "navbar">
         <li><a href="https://noteify.azurewebsites.net/"><img style = "padding-right: 5px;" src = "./icons/home.png" 
@@ -22,10 +23,11 @@
             alt = "loginIcon" class = "icon"><span style = "font-size: 14px">Login</span></a></li></a></li>
         <li><a href="https://noteify.azurewebsites.net/logout"><img style = "padding-right: 5px;" src = "./icons/logout.png" 
             alt = "logoutIcon" class = "icon"><span style = "font-size: 14px">Logout</span></a></li></a></li>
-        <li style = "background-color: rgb(196, 196, 196)"><a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
+        <li style = "background-color: rgb(222, 222, 222); padding-top: 10px; padding-bottom: 10px; border-radius: 10px;">
+            <a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
             alt = "noteifyIcon" class = "icon"><span style = "font-size: 14px">Noteify</span></a></li></a></li>
-        <li><a href="https://noteify.azurewebsites.net/notes"><img style = "padding-right: 5px;" src = "./icons/view.png" 
-            alt = "viewIcon" class = "icon"><span style = "font-size: 14px">View</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/notes"> <img style = "padding-right: 5px;" src = "./icons/view.png" alt = "viewIcon" class = "icon">
+            <span style = "font-size: 14px">View</span></a></li></a></li>
         <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal"><img style = "padding-right: 5px;" src  = "./icons/about.png" 
             alt = "aboutIcon" class = "icon"><span style = "font-size: 14px">About</span></a></li></a></li>
     </ul>
@@ -118,11 +120,11 @@
 
     <!-- Textbox for Title line -->
     <textarea  style = "line-height: 10px; resize: none" placeholder = "Title... (required)" class = "textBox" id = "titleInput" name = "titleInput"
-    rows = "1" cols = "35" wrap = "physical"></textarea><br><br>
+    rows = "1" cols = "35" wrap = "physical" maxlength = "30"></textarea><br><br>
 
     <!-- Textbox for user input -->
     <textarea placeholder = "Start writing... (required)" class = "textBox" id = "noteInput" name = "textInput"
-    rows = "10" cols = "70" wrap = "physical"></textarea>
+    rows = "10" cols = "70" wrap = "physical"  maxlength = "300"></textarea>
 
     <!-- Div styling for options buttons -->
     <div class = "buttonRow">
