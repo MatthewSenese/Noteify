@@ -57,6 +57,7 @@
                 document.getElementById('submitNote').className = "show";
                 document.getElementById('titleInput').className = "show";
                 document.getElementById('noteInput').className = "show"; 
+                document.getElementById('viewNote').className = "show";
             } else {
                 // redirect to login page
                 location.href = 'https://noteify.azurewebsites.net/login/';
@@ -142,7 +143,7 @@
         <!-- Button to take user to notes page -->
         <button style = "border: 2px solid black; padding-top: 4px; border-radius: 10px; margin: 5px; cursor: pointer;
         padding-bottom: 4px; padding-left: 6px; padding-right: 6px;" class = "hideIt"
-        id = "submitNote"  type = "button" onclick = "location.href='https://noteify.azurewebsites.net/notes';">View Notes</button>
+        id = "viewNote"  type = "button" onclick = "location.href='https://noteify.azurewebsites.net/notes';">View Notes</button>
     </div>
 
     <!-- location bar at the bottom of the page -->

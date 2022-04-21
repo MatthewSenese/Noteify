@@ -4,11 +4,36 @@
 
     <head>
         <meta charset = 'UTF-8'>
-        <title>Final Project Proposal</title>
+        <title>Noteify</title>
         <link rel = "stylesheet" href = "index.css">
         <link rel="icon" type="image/x-icon" href="./icons/fav.PNG">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
     </head>
+
+    <input style = "position: absolute; top: 10px; left: 10px; width: auto;
+    font-family: fire; background-color: transparent; border: none"
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "40">
+    
+    <script>
+
+        window.onload = function() {
+        welcMsg(); };
+
+        async function welcMsg() {
+
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            document.getElementById('loggedInAs').value = "Welcome, " + responseText
+            document.getElementById('loggedInAs').className = "hideIt";
+
+            if (responseText.length > 6) {
+                document.getElementById('loggedInAs').className = "show";
+            }
+        }
+
+    </script>
 
     <!-- Navigation bar to get back to home page --><br>
     <ul class = "navbar">
@@ -43,7 +68,8 @@
     <h2>Team Members: Matthew Senese, Matthew O'Malley, Jon Rayo</h2><br>
 
     <h2>Application Overview: </h2>
-    <p>This app will allow a user to take down notes and search through them</p>
+    <p>This app will allow a user to create an account, take down notes,
+        and search through notes saved to thier account</p>
     <br>
 
     <h2>Technology Overview: </h2>
@@ -53,15 +79,18 @@
     <h2>Feature List: </h2>
     <ul>
         <li>Menu of buttons</li>
-        <li>A field to login from and a field to write a note with a title</li>
+        <li>A field to login to</li>
+        <li>A field to write a note with a title</li>
+        <li>Stylized and simple layout</li>
+        <li>Ability to save a note</li>
+        <li>Authentication system to personalize user notes</li>
     </ul>
     <br>
 
     <h2>Future Features: </h2>
     <ul>   
-        <li>Stylized and simple layout</li>
-        <li>Ability to save a note</li>
-        <li>Authentication system to personalize user notes</li>
+        <li>A page to view notes saved to a user's credentials</li>
+        <li>An option to delete an account</li>
     </ul>
     <br>
 
@@ -75,10 +104,11 @@
     <h2>Advanced Technical Features: </h2>
     <ul>
         <li>A system to send email/text messages to user as a reminder feature</li>
+        <li>A way to remove and edit data in the database</li>
     </ul>
     <br>
     <br>
 
-    <h4>Last Updated: 4/5/2022</h4>
+    <h4>Last Updated: 4/20/2022</h4>
 </body>
 </html>
