@@ -37,9 +37,7 @@ app.get('/submitNote', (request, response) => {
   // send data to database with currently logged in user
   fb.auth().onAuthStateChanged(function(user) {
     if (user) {
-
       // user ID identifies user in database with their title and notes
-      
       var uid = user.uid
       firebaseDB.ref(`${uid}/` + title).set({ theNote: note});
     }
@@ -112,6 +110,23 @@ app.get('/islogged', (request, response, next) => {
     }
   });
 });
+
+// Function to grab user UID and pull notes
+app.get('/getNotes', (request, response) => {
+  fb.auth().onAuthStateChanged(function(user) {
+      
+      if (user) {
+        var uid = user.uid;
+        return firebaseDB.ref(`${uid}/`).once('value').then((snapshot) => {
+          response.send(snapshot.val());
+        });
+    } 
+    else {
+      response.send("Login to view your notes")
+    }
+  });
+});
+
 
 // Log the user out
 app.get('/logoutUser', (request, response) => {

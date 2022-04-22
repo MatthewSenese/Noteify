@@ -22,7 +22,10 @@
         // Functions that activate upon page load
         window.onload = function() {
         currNote();
-        welcMsg(); };
+        welcMsg(); 
+        getNotes();
+        };
+        
 
         // Welcome appears if user is logged in
         async function welcMsg() {
@@ -45,6 +48,16 @@
             var cur = "1"
             var more = "1"
             document.getElementById('oneOfTag').value = cur + " / " + more;
+        }
+
+        // Function to recieve notes from server
+        async function getNotes() {
+
+            const fetchString = "/getNotes"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            alert(responseText)
         }
 
     </script>
