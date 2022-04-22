@@ -120,12 +120,12 @@ app.get('/getNotes', (request, response) => {
         return firebaseDB.ref(`${uid}/`).once('value').then((snapshot) => {
           response.send(snapshot.val());
         });
-    } 
-    else {
-      response.send("Login to view your notes")
-    }
+      } 
+      else {
+        response.send("Login to view your notes")
+      }
+    });
   });
-});
 
 
 // Log the user out

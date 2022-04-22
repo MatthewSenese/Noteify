@@ -19,13 +19,15 @@
 
     <script>
 
+        // Declare set count and main array so they are available in entire script
+        var setCount = 0
+        var mainArray = new Array()
+        
         // Functions that activate upon page load
         window.onload = function() {
-        currNote();
         welcMsg(); 
         getNotes();
         };
-        
 
         // Welcome appears if user is logged in
         async function welcMsg() {
@@ -44,20 +46,68 @@
 
         // Function that changes the value of the page counter
         function currNote() {
+            
             // Logic done here that will determine which page it is on, and how many there are
-            var cur = "1"
-            var more = "1"
-            document.getElementById('oneOfTag').value = cur + " / " + more;
+            document.getElementById('oneOfTag').value = "1" + " / " + String(setNumber);
+        }
+
+        // Changes note to the note prior in the list
+        function noteForward() {
+
+            // Increment note number
+            setCount ++
+            
+            // Reset fields with new note
+            document.getElementById("titleOutput").value = (mainArray[setCount][0])
+            document.getElementById("noteOutput").value = (mainArray[setCount][1])
+
+        }
+
+        // Changes note to the next one in the list
+        function noteBackward() {
+            
+            // Decrement note number
+            setCount --
+            
+            // Reset fields with new note
+            document.getElementById("titleOutput").value = (mainArray[setCount][0])
+            document.getElementById("noteOutput").value = (mainArray[setCount][1])
         }
 
         // Function to recieve notes from server
         async function getNotes() {
 
+            // Make a request to the server for the note data
             const fetchString = "/getNotes"
             const response = await fetch(fetchString)
             const responseText = await response.text()
 
-            alert(responseText)
+            // First, split the result to make it an object
+            var data = responseText.split(",")
+            
+            // iterate through each title note pair and strip them
+            for (var set of data) {
+                // ugly string parsing (please ignore) might clean up later
+                var theTitle = set.substr(0, set.indexOf(':'));
+                var theNote = set.substr(set.indexOf(':') + 1);
+                var theTitle = theTitle.split(/[{"]+/)
+                var theNote = theNote.split(/[{}:"]+/)
+                var theNote = theNote.slice(2, -1)
+                var theTitle = theTitle.slice(1, -1)
+
+                // push subarray to mainArray
+                mainArray.push([theTitle, theNote])
+            }
+
+            // If there is no note data, alert user and redirect them to noteify page
+            if (responseText.length < 1) {
+                alert("You have no notes! Redirecting to Noteify page...")
+                location.href = 'https://noteify.azurewebsites.net/noteify/'
+            } else {
+                // Set each field value to it's associated array value in main array
+                document.getElementById("titleOutput").value = (mainArray[setCount][0])
+                document.getElementById("noteOutput").value = (mainArray[setCount][1])
+            }
         }
 
     </script>
@@ -113,13 +163,10 @@
         <button class = "createButton" id = "deleteNoteID"  type = "button" onclick = "deleteNote()">Delete Note</button>
     </div><br><br>
 
-    <!-- Navigation arrows for notes -->
-    <img class = "arrows" src = "./icons/arrowb.png" alt = "backArrow">
-    <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5"></textarea>
-    <img class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow">
-
-
-
+    <!-- Navigation arrows for notes that increment or decrement note value -->
+    <img class = "arrows" src = "./icons/arrowb.png" alt = "backArrow" onclick = "noteBackward();currNote()">
+    <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5">1 / 1</textarea>
+    <img class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow" onclick = "noteForward();currNote()">
 
     <div id ="root"></div>
     <script>
