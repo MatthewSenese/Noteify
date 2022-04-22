@@ -26,7 +26,6 @@
         // Functions that activate upon page load
         window.onload = function() {
         welcMsg(); 
-        getNotes();
         };
 
         // Welcome appears if user is logged in
@@ -81,6 +80,8 @@
             const fetchString = "/getNotes"
             const response = await fetch(fetchString)
             const responseText = await response.text()
+            
+            alert(responseText);
 
             // First, split the result to make it an object
             var data = responseText.split(",")
@@ -109,6 +110,7 @@
                 document.getElementById("noteOutput").value = (mainArray[setCount][1])
             }
         }
+
 
     </script>
 
@@ -161,6 +163,8 @@
         <!-- Option buttons at the bottom of each note--> <br><br>
         <button class = "createButton" id = "editNoteID"  type = "button" onclick = "editNote()">Edit Note</button>
         <button class = "createButton" id = "deleteNoteID"  type = "button" onclick = "deleteNote()">Delete Note</button>
+        <button class = "createButton" id = "getNoteID"  type = "button" onclick = "getNotes()">View</button>
+
     </div><br><br>
 
     <!-- Navigation arrows for notes that increment or decrement note value -->
@@ -193,6 +197,12 @@ firebaseRef.on("value", function(snapshot) {
    
 
 </script>
+
+    <!-- Navigation arrows for notes -->
+    <img class = "arrows" src = "./icons/arrowb.png" alt = "backArrow">
+    <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5"></textarea>
+    <img class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow">
+
     </body>
 
     </html>

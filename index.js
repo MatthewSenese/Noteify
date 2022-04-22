@@ -119,6 +119,8 @@ app.get('/getNotes', (request, response) => {
         var uid = user.uid;
         return firebaseDB.ref(`${uid}/`).once('value').then((snapshot) => {
           response.send(snapshot.val());
+          console.log(snapshot.val());
+        
         });
       } 
       else {
