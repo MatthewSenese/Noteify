@@ -1,17 +1,5 @@
-body {
-    background-color: rgb(109, 165, 211);
-    text-align: center;
-    padding-top: 20px;
-}
-
 .html {
     background-color: rgb(221, 221, 221);
-}
-
-li {
-    text-align: center;
-    list-style-type: square;
-    list-style-position: inside;
 }
 
 .navbar {
@@ -37,11 +25,23 @@ a {
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
+    border-radius: 10px;
 }
 
 .navbar a:hover {
-    background-color: rgb(134, 183, 223);
-    border-radius: 10px;
+    background-color: rgb(196, 196, 196);
+}
+
+.icon {
+    background: none;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0%;
+    text-decoration: none;
+    margin-bottom: -1px;
 }
 
 .toptitle {
@@ -97,18 +97,6 @@ input[type=password] {
     font-family: georgia;
 }
 
-.icon {
-    background: none;
-    float: left;
-    width: 20px;
-    height: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 0%;
-    text-decoration: none;
-    margin-bottom: -1px;
-}
-
 .bodytext {
     font-family: lato;
     padding: 10px;
@@ -124,6 +112,10 @@ input[type=password] {
     font-size: 16px;
 }
 
+body {
+    padding-top: 20px;
+}
+
 .hideIt {
     display: none;
 }
@@ -137,4 +129,9 @@ input[type=password] {
     background-color: transparent;
     border: none;
     text-decoration: none;
+}
+
+li {
+    text-align: center;
+    list-style-position: inside;
 }
