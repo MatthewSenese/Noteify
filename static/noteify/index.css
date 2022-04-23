@@ -104,23 +104,28 @@ input[type=password] {
     padding-bottom: 15px;
 }
 
-.createButton {
-    border: 2px solid black;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 6px;
-    padding-right: 6px;
+.buttonSty {
+    font-family: fire;
+    border: none;
+    color: rgb(236, 236, 236);
+    background-color: rgb(60, 80, 255);
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-radius: 10px;
     margin: 5px;
     cursor: pointer;
+    box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);
 }
 
-.createButton:active {
+.buttonSty:hover {
+    background-color: rgb(44, 61, 212);
+    color: rgb(206, 206, 206);
+}
+
+.buttonSty:active {
     transform: translateY(4px);
-}
-
-.textBox {
-    display: none;
 }
 
 textarea {
