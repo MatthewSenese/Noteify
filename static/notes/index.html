@@ -42,6 +42,10 @@
 
             if (responseText.length > 6) {
                 document.getElementById('loggedInAs').className = "show";
+            } else {
+                alert("You are not logged in.\nClick OK to go to the login page")
+                location.href = 'https://noteify.azurewebsites.net/login/'
+
             }
         }
 
