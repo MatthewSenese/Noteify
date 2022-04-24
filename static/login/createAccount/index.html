@@ -40,6 +40,8 @@
             const password = document.getElementById("password").value
             const password2 = document.getElementById("password2").value
             expression = /^[^@]+@\w+(\.\w+)+\w$/
+            var hasNumber = /\d/;
+            var isLower = /[a-z]/;
 
             // check if user is logged in, don't allow account creation if they are
             const fetchString = "/islogged?"
@@ -53,6 +55,12 @@
                     alert("ERROR: Passwords must match")
                 } else if (expression.test(email) == false) {
                     alert("ERROR: Enter an email")
+                } else if (password.length < 7) {
+                    alert("ERROR: Password must be at least 8 characters")
+                } else if (!(hasNumber.test(password))) {
+                    alert("ERROR: Password must contain a number")
+                } else if (isLower.test(password)) {
+                    alert("ERROR: Password must contain an uppercase letter")
                 } else {
                     // Submit email and password to server
                     const fetchString = "/createAccount?email="+email+"&password="+password
@@ -128,6 +136,14 @@
                     alt = "homeIcon" class = "icon2"></label>
                 <input type = "password" id="password2" placeholder = "Re-enter password" name = "password2">            
         </div>
+
+        <div style = "text-align: center; list-style-position: inside;">
+            <h3>Password must contain the following:</h3>
+            <ul>
+                <li>A minimum of <b>8 characters</b></li>
+                <li>A <b>number</b></li>
+                <li>A <b>Capital/Uppercase</b> letter</li>
+            </ul>
     </p>
 
     <button class = "buttonSty" id = "createAccount" type = "button" onclick = "create()">Create Account</button><br>
