@@ -12,7 +12,7 @@
 
     <input style = "position: absolute; top: 10px; left: 10px; width: auto;
     font-family: fire; background-color: transparent; border: none; outline: none;" 
-    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "40">
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "45">
 
     <!-- Navigation bar to get back to home page -->
     <ul class = "navbar">
@@ -136,17 +136,17 @@
                     alt = "homeIcon" class = "icon2"></label>
                 <input type = "password" id="password2" placeholder = "Re-enter password" name = "password2">            
         </div>
-
-        <div style = "text-align: center; list-style-position: inside;">
-            <h3>Password must contain the following:</h3>
-            <ul>
-                <li>A minimum of <b>8 characters</b></li>
-                <li>A <b>number</b></li>
-                <li>A <b>Capital/Uppercase</b> letter</li>
-            </ul>
     </p>
 
     <button class = "buttonSty" id = "createAccount" type = "button" onclick = "create()">Create Account</button><br>
+
+    <div style = "text-align: center; font-family: lato;">
+        <h3>Password Requirements:</h3>
+        <ul>
+            <li>A <b>number</b></li>
+            <li>An <b>uppercase</b> letter</li>
+            <li>A minimum of <b>8 characters</b></li>
+        </ul>
 
     </body>
 

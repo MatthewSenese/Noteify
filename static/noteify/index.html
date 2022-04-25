@@ -12,7 +12,7 @@
 
     <input style = "position: absolute; top: 10px; left: 10px; width: auto;
     font-family: fire; background-color: transparent; border: none; outline: none;" 
-    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "40">
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "45">
 
     <!-- Navigation Bar -->
     <!-- Navigation Bar -->
@@ -70,6 +70,12 @@
             document.getElementById('noteInput').value = "";
             document.getElementById('titleInput').value = ""; }
 
+        // Function that shows success message for 3 seconds
+        function showSuccess() {
+            document.getElementById('successMsg').className = "show";
+            setTimeout(function(){document.getElementById("successMsg").className = "hideIt";}, 3000);
+        }
+
         // Function to send data to server
         async function submitNote() {
 
@@ -91,9 +97,15 @@
                 if (confirm(text) == true) {
                     const fetchString = "/submitNote?title="+title+"&note="+note
                     const response = await fetch(fetchString)
+                    const responseText = await response.text()
+                    if (responseText == "") {
+                        clearText();
+                        showSuccess();
+                    }
                 }
             }
         }
+
     </script>
 
     <script>
@@ -129,7 +141,7 @@
     <!-- Textbox for user input -->
     <textarea style = "border-radius: 10px; padding: 5px; border: none; box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);
     font-family: consolas;" placeholder = "Start writing... (required)" id = "noteInput" name = "textInput" class = "hideIt" 
-    rows = "10" cols = "70" wrap = "physical"  maxlength = "300"></textarea><br>
+    rows = "10" cols = "70" wrap = "physical"  maxlength = "250"></textarea><br>
 
     <!-- Div styling for options buttons -->
     <div class = "buttonRow">
@@ -152,6 +164,9 @@
         cursor: pointer; box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);" class = "hideIt" id = "viewNote"  type = "button" onclick = 
         "location.href='https://noteify.azurewebsites.net/notes';">View Notes</button>
     </div>
+
+    <p id = "successMsg" style = "padding-top: 10px; padding-bottom: -1px; font-family: lato; text-align: center; 
+    font-size: 14px; color: rgb(0, 189, 0);" class = "hideIt">Message Successfully Submitted!</p>
 
     <!-- location bar at the bottom of the page -->
     <div style = "position: relative; text-align: center">

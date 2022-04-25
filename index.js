@@ -40,6 +40,7 @@ app.get('/submitNote', (request, response) => {
       // user ID identifies user in database with their title and notes
       var uid = user.uid
       firebaseDB.ref(`${uid}/` + title).set({ theNote: note});
+      response.send("")
     }
   });
 })

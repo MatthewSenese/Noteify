@@ -15,7 +15,7 @@
 
     <input style = "position: absolute; top: 10px; left: 10px; width: auto;
     font-family: fire; background-color: transparent; border: none; outline: none;" 
-    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "40">
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "45">
 
     <script>
 
@@ -27,8 +27,7 @@
         // Functions that activate upon page load
         window.onload = function() {
         welcMsg(); 
-        getNotes();
-        };
+        getNotes(); };
 
         // Welcome appears if user is logged in
         async function welcMsg() {
@@ -154,11 +153,11 @@
 
     <!-- Textbox for Title line -->
     <textarea readonly style = "line-height: 10px; resize: none textarea; height: 1em;" class = "textBox" id = "titleOutput" name = "titleOutput"
-    rows = "1" cols = "25" wrap = "physical" maxlength = "30"></textarea><br><br>
+    rows = "1" cols = "25" wrap = "physical" maxlength = "30" placeholder = "Title"></textarea><br><br>
 
     <!-- Textbox for user input -->
     <textarea readonly class = "textBox" id = "noteOutput" name = "textInput" rows = "6" cols = "40" wrap = "physical" 
-    maxlength = "300"></textarea>
+    maxlength = "250" placeholder = "Note"></textarea>
     
 
     <!-- Div styling for options buttons -->
@@ -173,8 +172,6 @@
     <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5">1 / 1</textarea>
     <img class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow" onclick = "noteForward();currNote()">
 
-
-   
     </body>
 
     </html>
