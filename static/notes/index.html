@@ -59,11 +59,18 @@
         function noteForward() {
 
             // Increment note number
-            setCount ++
+            // If statement sends setCount to the beginning of the array if moving past the last element
+            if (setCount == mainArray.length - 1) {
+                setCount = 0
+            } else{
+                setCount ++
+            }
+            
             
             // Reset fields with new note
             document.getElementById("titleOutput").value = (mainArray[setCount][0])
             document.getElementById("noteOutput").value = (mainArray[setCount][1])
+            document.getElementById("oneOfTag").value = ((setCount + 1) + " / " + mainArray.length)
 
         }
 
@@ -71,11 +78,17 @@
         function noteBackward() {
             
             // Decrement note number
-            setCount --
+            // If statement resets setCount to end of the array when moving one step back from the first note
+            if (setCount == 0) {
+                setCount = mainArray.length - 1
+            } else {
+                setCount --
+            }
             
             // Reset fields with new note
             document.getElementById("titleOutput").value = (mainArray[setCount][0])
             document.getElementById("noteOutput").value = (mainArray[setCount][1])
+            document.getElementById("oneOfTag").value = ((setCount + 1) + " / " + mainArray.length)
         }
 
         // Function to recieve notes from server
@@ -111,6 +124,7 @@
                 // Set each field value to it's associated array value in main array
                 document.getElementById("titleOutput").value = (mainArray[setCount][0])
                 document.getElementById("noteOutput").value = (mainArray[setCount][1])
+                document.getElementById("oneOfTag").value = ((setCount + 1) + " / " + mainArray.length)
             }
         }
 
@@ -169,7 +183,7 @@
 
     <!-- Navigation arrows for notes that increment or decrement note value -->
     <img class = "arrows" src = "./icons/arrowb.png" alt = "backArrow" onclick = "noteBackward();currNote()">
-    <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5">1 / 1</textarea>
+    <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5"></textarea>
     <img class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow" onclick = "noteForward();currNote()">
 
     </body>
