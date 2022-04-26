@@ -41,7 +41,7 @@
             const password2 = document.getElementById("password2").value
             expression = /^[^@]+@\w+(\.\w+)+\w$/
             var hasNumber = /\d/;
-            var isLower = /[a-z]/;
+            var passLower = password.toLowerCase()
 
             // check if user is logged in, don't allow account creation if they are
             const fetchString = "/islogged?"
@@ -59,7 +59,7 @@
                     alert("ERROR: Password must be at least 8 characters")
                 } else if (!(hasNumber.test(password))) {
                     alert("ERROR: Password must contain a number")
-                } else if (isLower.test(password)) {
+                } else if (password == passLower) {
                     alert("ERROR: Password must contain an uppercase letter")
                 } else {
                     // Submit email and password to server
