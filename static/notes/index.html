@@ -23,7 +23,6 @@
         var setCount = 0
         var mainArray = new Array()
 
-
         // Functions that activate upon page load
         window.onload = function() {
         welcMsg(); 
@@ -44,7 +43,6 @@
             } else {
                 alert("You are not logged in.\nClick OK to go to the login page")
                 location.href = 'https://noteify.azurewebsites.net/login/'
-
             }
         }
 
@@ -66,12 +64,10 @@
                 setCount ++
             }
             
-            
             // Reset fields with new note
             document.getElementById("titleOutput").value = (mainArray[setCount][0])
             document.getElementById("noteOutput").value = (mainArray[setCount][1])
             document.getElementById("oneOfTag").value = ((setCount + 1) + " / " + mainArray.length)
-
         }
 
         // Changes note to the next one in the list
@@ -131,12 +127,99 @@
             }
         }
 
-        /*
-        async function editNote() {
+        // Function that lets user's edit notes
+        function editNote() {
 
-            location.href = 'https://noteify.azurewebsites.net/noteify/'
+            // focus on note field and make it editable
+            document.getElementById("noteOutput").focus();
+            document.getElementById('noteOutput').removeAttribute('readonly');
+            
+            // Display "editing" message" and resubmit button and change outline color
+            document.getElementById('editMsg').className = "show";
+            document.getElementById('resubNoteID').className = "show";
+            document.getElementById("noteOutput").className = "activeBox"
+            document.getElementById("cancelEditID").className = "show"
         }
-        */
+
+        async function resubNote() {
+
+            const savedNote = document.getElementById("noteOutput").value
+            if (savedNote != mainArray[setCount][1]) {
+
+                // Get Values
+                const note = document.getElementById('titleOutput').value;
+                const title = document.getElementById('noteOutput').value;
+
+                // Submit note
+                let text = "Are you sure you'd like to submit this note?\nClick OK to submit or Cancel"
+                if (confirm(text) == true) {
+
+                    // First delete the note
+                    const fetchStringD = "/deleteNote?title="+title+"&note="+note
+                    const responseD = await fetch(fetchStringD)
+                    const responseTextD = await response.text()
+                    if (responseTextD == "") {
+
+                        // If note deletion successful, submit new note with same title
+                        const fetchStringN = "/submitNote?title="+title+"&note="+note
+                        const responseN = await fetch(fetchStringN)
+                        const responseText = await responseN.text()
+                        if (responseText == "") {
+                            document.getElementById('editMsg').className = "hideIt";
+                            document.getElementById('resubNoteID').className = "hideIt";
+                            document.getElementById('editMsg').className = "hideIt";
+                            showSuccess();
+                        }
+                    }
+                }
+            } else {
+                alert("You did not edit the note!")
+                cancelEdit();
+            }
+        }
+
+        async function deleteNote() {
+
+            // Delete note
+            let text = "Are you sure you'd like to delete this note?\nClick OK to submit or Cancel"
+            if (confirm(text) == true) {
+                const fetchString = "/deleteNote?title="+title+"&note="+note
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+
+                // if successful, display success message
+                if (responseText == "") {
+                    showSuccessDel();
+                }
+            }
+        }
+
+        // Function that shows successful submission message
+        function showSuccess() {
+            document.getElementById('successMsg').className = "show";
+            setTimeout(function(){document.getElementById("successMsg").className = "hideIt";}, 4000);
+        }
+
+        // Function that shows successful deletion message
+        function showSuccessDel() {
+            document.getElementById('successMsgDel').className = "show";
+            setTimeout(function(){document.getElementById("successMsgDel").className = "hideIt";}, 4000);
+        }
+
+        // Function that re-hides all elements and resets to their values
+        function cancelEdit() {
+            document.getElementById('successMsg').className = "hideIt";
+            document.getElementById('resubNoteID').className = "hideIt";
+            document.getElementById('editMsg').className = "hideIt";
+            document.getElementById('cancelEditID').className = "hideIt";
+            document.getElementById("noteOutput").className = "textBox"
+            document.getElementById('noteOutput').readOnly = true;
+
+            // reset text fields if user deleted note and then canceled edit
+            document.getElementById("noteOutput").value = (mainArray[setCount][1])
+            document.getElementById("oneOfTag").value = ((setCount + 1) + " / " + mainArray.length)
+        }
+
     </script>
 
     <!-- Navigation Bar -->
@@ -181,19 +264,36 @@
     <!-- Textbox for user input -->
     <textarea readonly class = "textBox" id = "noteOutput" name = "textInput" rows = "6" cols = "40" wrap = "physical" 
     maxlength = "250" placeholder = "Note"></textarea>
-    
+
 
     <!-- Div styling for options buttons -->
     <div class = "buttonRow">
         <!-- Option buttons at the bottom of each note--> <br><br>
         <button class = "buttonSty" id = "editNoteID"  type = "button" onclick = "editNote()">Edit Note</button>
+        <button style = "font-family: fire; border: none; color: rgb(236, 236, 236); background-color: rgb(60, 80, 255);
+        padding-top: 6px; padding-bottom: 6px; padding-left: 10px; padding-right: 10px; border-radius: 10px; margin: 5px;
+        cursor: pointer; box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);" class = "hideIt" id = "cancelEditID"  type = "button" 
+        onclick = "cancelEdit()">Cancel</button>
+        <button style = "font-family: fire; border: none; color: rgb(236, 236, 236); background-color: rgb(0, 189, 0);
+        padding-top: 6px; padding-bottom: 6px; padding-left: 10px; padding-right: 10px; border-radius: 10px; margin: 5px;
+        cursor: pointer; box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);" class = "hideIt" id = "resubNoteID"  type = "button" 
+        onclick = "resubNote()">Resubmit Note</button>
         <button class = "deleteButtonSty" id = "deleteNoteID"  type = "button" onclick = "deleteNote()">Delete Note</button>
     </div><br><br>
 
     <!-- Navigation arrows for notes that increment or decrement note value -->
-    <img class = "arrows" src = "./icons/arrowb.png" alt = "backArrow" onclick = "noteBackward();currNote()">
+    <img id = "bclick" class = "arrows" src = "./icons/arrowb.png" alt = "backArrow" onclick = "noteBackward();currNote()">
     <textarea style = "height: 1.5em;" rows = "1" cols = "4" id = "oneOfTag" class = "oneOf" readonly size = "5"></textarea>
-    <img class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow" onclick = "noteForward();currNote()">
+    <img id = "fclick" class = "arrows" src = "./icons/arrowf.png" alt = "forwArrow" onclick = "noteForward();currNote()">
+
+    <p id = "editMsg" style = "padding-top: 10px; padding-bottom: -1px; font-family: lato; text-align: center; 
+    font-size: 14px; color: rgb(0, 189, 0);" class = "hideIt">* Now Editing *</p>
+
+    <p id = "successMsg" style = "padding-top: 10px; padding-bottom: -1px; font-family: lato; text-align: center; 
+    font-size: 14px; color: rgb(0, 189, 0);" class = "hideIt">Message Successfully Submitted!</p>
+
+    <p id = "successMsgDel" style = "padding-top: 10px; padding-bottom: -1px; font-family: lato; text-align: center; 
+    font-size: 14px; color: rgb(0, 189, 0);" class = "hideIt">Message Successfully Deleted!</p>
 
     </body>
 

@@ -206,7 +206,16 @@ input[type=password] {
     border: none;
     box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);
     font-family: consolas;
-    
+}
+
+.activeBox {
+    outline: 2px solid rgb(0, 189, 0);
+    border-radius: 10px;
+    padding: 5px;
+    resize: none;
+    border: none;
+    box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);
+    font-family: consolas;
 }
 
 .clearButton {
