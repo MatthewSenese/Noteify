@@ -45,6 +45,12 @@ app.get('/submitNote', (request, response) => {
   });
 })
 
+/*
+app.get('/editNote', (request, response) => {
+
+
+})
+*/
 // Log user in
 app.get('/loginUser', (request, response) => {
 
