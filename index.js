@@ -122,6 +122,28 @@ app.get('/createAccount', (request, response) => {
   })
 });
 
+// Verify a user's email
+app.get('/verify', (request, response) => {
+ 
+  user = fb.auth().currentUser;
+  user.sendEmailVerification()
+  .then(function() {
+    fb.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        response.send("Verified")
+      }
+    });
+  })
+  .catch(function(error) {
+    var errorMessage = error.message
+
+    if (error) {
+      response.type('text/plain')
+      response.send(errorMessage)
+    }
+  })
+});
+
 // Function to check if user is logged in. If they are, return their email.
 app.get('/islogged', (request, response, next) => {
   fb.auth().onAuthStateChanged(function(user) {

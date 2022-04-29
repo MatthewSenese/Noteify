@@ -57,6 +57,17 @@
             }
         }
 
+        async function verify() {
+            const fetchString = "/verify?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            if (responseText == "Verified") {
+                alert("Verificaiton email sent")
+            }
+
+        }
+
         /*function deleteAcc() {
             const indicator = document.getElementById('loggedInAs').className;
             if (indicator == "show") {
@@ -117,6 +128,7 @@
     </p>
     <div class = "buttonRow">
         <button class = "buttonSty" id = "Submit"  type = "button" onclick = "logout()">Logout</button>
+        <button class = "buttonSty" id = "Verify" type = "button" onclick = "verify()">Verify Account</button>
     </div>
 
     <div class = "mainbody">
