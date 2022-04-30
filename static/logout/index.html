@@ -57,13 +57,14 @@
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
 
-                // if server sends back string containing "out", it was successful. Reroute to home page
+                // if server sends back string containing "out", it was successful
                 if (responseText == "out") {
                     alert("Logged out")
                 }
                 
-                alert("Your account is not verified!\nClick OK to go to the verification page")
-                location.href = 'https://noteify.azurewebsites.net/login/createAccount';
+                alert("Make sure to verify your account as well! \nClick OK to go to the verificaiton page")
+                location.href = 'https://noteify.azurewebsites.net/login/verifyUser';
+
             } else {
                 // if server did not send anything back, that means it was not successful. Reroute to login page
                 alert("You are not logged in!\nClick OK to go to the login page")
