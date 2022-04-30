@@ -37,6 +37,7 @@
 
             // check presence of welcome message to see if user is logged in, and if so, let them log out
             const indicator = document.getElementById('loggedInAs').className;
+            const indicator2 = document.getElementById('loggedInAs').value;
             if (indicator == "show") {
 
                 // send request to server with nothing it in
@@ -50,6 +51,9 @@
                     //location.href = 'http://localhost:8080/';
                     location.href = 'https://noteify.azurewebsites.net/';
                 }
+            } else if (indicator2 == "Welcome, NoVerify") {
+                alert("Your account is not verified!\nClick OK to go to the verification page")
+                location.href = 'https://noteify.azurewebsites.net/login/createAccount';
             } else {
                 // if server did not send anything back, that means it was not successful. Reroute to login page
                 alert("You are not logged in!\nClick OK to go to the login page")
