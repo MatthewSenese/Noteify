@@ -144,18 +144,20 @@ app.get('/verify', (request, response) => {
   })
 });
 
-// Function to check if user is logged in. If they are, return their email.
+// Function to check if user is logged in and if their account is verified. If they are, return their email.
 app.get('/islogged', (request, response, next) => {
   fb.auth().onAuthStateChanged(function(user) {
     
-    if (user) {
+    if (user && user.emailVerified) {
         const email = user.email
         response.send(email)
         next()
         
-    } else {
-        response.send("NoLog")
+    } else if (user && !user.emailVerified) {
+        response.send("NoVerify")
         next()
+    } else {
+      response.send("NoLog")
     }
   });
 });

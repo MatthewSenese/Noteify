@@ -73,8 +73,7 @@ async function create() {
                     // if we get something back, that means user creation and log in is successful, so reroute to noteify
                     } else {
                         alert("Account creation successful!\nClick OK to proceed.")
-                        //location.href = 'http://localhost:8080/noteify';
-                        location.href = 'https://noteify.azurewebsites.net/noteify/';
+
                     } 
                 }  
             } else {
@@ -82,6 +81,19 @@ async function create() {
                 alert("You are already logged in!\n")
             }
         }
+
+    async function verify() {
+        const fetchString = "/verify?"
+        const response = await fetch(fetchString)
+        const responseText = await response.text()
+
+        if (responseText == "Verified") {
+                alert("Verificaiton email sent")
+                //location.href = 'http://localhost:8080/noteify';
+                location.href = 'https://noteify.azurewebsites.net/noteify/';
+        }
+
+    }
 
     </script>
 
@@ -100,7 +112,7 @@ async function create() {
             document.getElementById('loggedInAs').value = "Welcome, " + responseText
             document.getElementById('loggedInAs').className = "hideIt";
 
-            if (responseText.length > 6) {
+            if (responseText.length > 9) {
                 document.getElementById('loggedInAs').className = "show";
             }
         }
@@ -149,6 +161,12 @@ async function create() {
         </ul>
 
     </body>
+
+    <p id = "VerifyMsg" style = "padding-top: 10px; padding-bottom: -1px; font-family: lato; text-align: center; 
+    font-size: 14px; color: rgb(189, 0, 0);">Please verify your account before taking notes</p>
+    <br>
+    <button class = "buttonSty" id = "Verify" type = "button" 
+    onclick = "verify()">Verify Account</button>
 
     <div style = "position: relative; text-align: center">
         <a href = "https://noteify.azurewebsites.net/login/createAccount">

@@ -38,9 +38,12 @@
             document.getElementById('loggedInAs').value = "Welcome, " + responseText
             document.getElementById('loggedInAs').className = "hideIt";
 
-            if (responseText.length > 6) {
+            if (responseText.length > 9) { //  Logged in and verified
                 document.getElementById('loggedInAs').className = "show";
-            } else {
+            } else if (responseText == "NoVerify") { // Logged in but not verified
+                alert("Your account is not verified. \nClick OK to go to the create account page")
+                location.href = 'https://noteify.azurewebsites.net/login/createAccount'
+            } else { // Not logged in at all
                 alert("You are not logged in.\nClick OK to go to the login page")
                 location.href = 'https://noteify.azurewebsites.net/login/'
             }
