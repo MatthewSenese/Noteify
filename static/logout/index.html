@@ -52,6 +52,16 @@
                     location.href = 'https://noteify.azurewebsites.net/';
                 }
             } else if (indicator2 == "Welcome, NoVerify") {
+                // Still log out user, but let them know their account isn't verified
+                const fetchString = "/logoutUser?"
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+
+                // if server sends back string containing "out", it was successful. Reroute to home page
+                if (responseText == "out") {
+                    alert("Logged out")
+                }
+                
                 alert("Your account is not verified!\nClick OK to go to the verification page")
                 location.href = 'https://noteify.azurewebsites.net/login/createAccount';
             } else {
