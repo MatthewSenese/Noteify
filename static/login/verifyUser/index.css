@@ -1,0 +1,156 @@
+.html {
+    background-color: rgb(221, 221, 221);
+}
+
+.navbar {
+    font-family: fire;
+    font-size: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar li {
+    display: inline;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 10px;
+}
+
+.navbar a:hover {
+    background-color: rgb(196, 196, 196);
+}
+
+.icon {
+    background: none;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0%;
+    text-decoration: none;
+    margin-bottom: -1px;
+}
+
+.buttonSty {
+    font-family: fire;
+    border: none;
+    color: rgb(236, 236, 236);
+    background-color: rgb(60, 80, 255);
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 2px rgb(173, 173, 173);
+}
+
+.buttonSty:hover {
+    background-color: rgb(44, 61, 212);
+    color: rgb(206, 206, 206);
+}
+
+.buttonSty:active {
+    transform: translateY(4px);
+}
+
+.toptitle {
+    font-size: 40px;
+    margin-bottom: 0; 
+    margin-top: 5px; 
+    font-family: strike;
+    text-align: center;
+}
+
+.topsubtitle {
+    font-size: 16px;
+    font-family: lato;
+    margin-top: 2px;
+    text-align: center;
+    font-weight: bold;
+}
+
+input[type=text] {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[type=password] {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+@font-face {
+    font-family: 'strike';
+    src: url(fonts/strike.ttf)
+}
+
+@font-face {
+    font-family: 'fire';
+    src: url(fonts/fire.ttf)
+}
+
+@font-face {
+    font-family: 'lato';
+    src: url(fonts/lato.ttf)
+}
+
+.mainbody {
+    padding: 20px;
+    width: 90%;
+    margin: auto;
+    background-color: rgb(207, 207, 207);
+    border-radius: 10px;
+    text-align: center;
+    font-family: georgia;
+}
+
+.bodytext {
+    font-family: lato;
+    padding: 10px;
+    width: 60%;
+    margin: auto;
+}
+
+.bottomnav {
+    position: fixed;
+    bottom: 0;
+    width: 88%;
+    font-family: fire;
+    font-size: 16px;
+}
+
+body {
+    padding-top: 20px;
+}
+
+.hideIt {
+    display: none;
+}
+
+.loggedIn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: auto;
+    font-family: fire;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+}

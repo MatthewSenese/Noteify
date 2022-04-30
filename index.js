@@ -123,25 +123,46 @@ app.get('/createAccount', (request, response) => {
 });
 
 // Verify a user's email
-app.get('/verify', (request, response) => {
- 
-  user = fb.auth().currentUser;
-  user.sendEmailVerification()
-  .then(function() {
-    fb.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        response.send("Verified")
-      }
-    });
-  })
-  .catch(function(error) {
-    var errorMessage = error.message
+app.get('/verifyEmail', (request, response) => {
 
-    if (error) {
-      response.type('text/plain')
-      response.send(errorMessage)
+ /* fb.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      user.sendEmailVerification()
+      response.send("Verified") }*/
+
+  fb.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      user.sendEmailVerification()
+      .then(function() {
+        response.send("Verified")
+      })
+      .catch(function(error) {
+        var errorMessage = error.message
+    
+        if (error) {
+          response.type('text/plain')
+          response.send(errorMessage)
+        }
+      })
     }
-  })
+  });
+});
+
+// Function to determine if email is verified
+app.get('/isVerif', (request, response) => {
+
+
+  fb.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      user.reload()
+      if (user.emailVerified) {
+  
+        response.send("y")
+      }
+    }
+  
+    
+  });
 });
 
 // Function to check if user is logged in and if their account is verified. If they are, return their email.

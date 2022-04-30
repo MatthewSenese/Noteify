@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <html lang = 'en'>
+    <!-- Matthew Senese, Matthew O'Malley, Jon Rayo -->
+
+    <head>
+        <meta charset = 'UTF-8'>
+        <title>Noteify</title>
+        <link rel = "stylesheet" href = "index.css">
+        <link rel="icon" type="image/x-icon" href="./icons/fav.PNG">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    </head>
+    
+    <script>
+
+        // call the checkIfVerified function every 5 seconds
+        window.onload = function() {
+            kickOut(); }
+    
+    </script>
+
+    <script>
+
+        // Function that checks if the user is verified, and if so, reroutes them
+        async function checkIfVerified() {
+            const fetchString = "/isVerif?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            if (responseText) {
+                location.href = 'https://noteify.azurewebsites.net/login/'
+            }
+        }
+    
+    </script>
+
+    <script>
+
+        // Function that redirects users away from this page if they are logged in and verified
+        function kickOut() {
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            if (responseText.includes("@")) {
+                location.href = 'https://noteify.azurewebsites.net/'
+            }
+        }
+
+    </script>
+
+    <script>
+
+        // Function that sends verification email to user
+        async function sendEmail() {
+            const fetchString = "/verifyEmail?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            if (responseText == "Verified") {
+                setInterval(checkIfVerified, 2000);
+                document.getElementById('emailSentMsg').className = "show"; }
+            else {
+                alert(responseText)
+            }
+        }
+    </script>
+
+    <!-- Navigation Bar -->
+    <ul class = "navbar">
+        <li style = "background-color: rgb(222, 222, 222); padding-top: 10px; padding-bottom: 10px; border-radius: 10px;">
+            <a href="https://noteify.azurewebsites.net/"><img style = "padding-right: 5px;" src = "./icons/home.png" 
+            alt = "homeIcon" class = "icon"><span style = "font-size: 14px">Home</span></a></li>
+        <li><a href="https://noteify.azurewebsites.net/login"><img style = "padding-right: 5px;" src = "./icons/login.png" 
+            alt = "loginIcon" class = "icon"><span style = "font-size: 14px">Login</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/logout"><img style = "padding-right: 5px;" src = "./icons/logout.png" 
+            alt = "logoutIcon" class = "icon"><span style = "font-size: 14px">Logout</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/noteify"><img style = "padding-right: 5px;" src = "./icons/noteify.png" 
+            alt = "noteifyIcon" class = "icon"><span style = "font-size: 14px">Noteify</span></a></li></a></li>
+        <li><a href="https://noteify.azurewebsites.net/notes"> <img style = "padding-right: 5px;" src = "./icons/view.png" alt = "viewIcon" class = "icon">
+            <span style = "font-size: 14px">View</span></a></li></a></li>
+        <li class = "hideIt"><a href="https://noteify.azurewebsites.net/projectProposal"><img style = "padding-right: 5px;" src  = "./icons/about.png" 
+            alt = "aboutIcon" class = "icon"><span style = "font-size: 14px">About</span></a></li></a></li>
+    </ul>
+
+    <!-- Header -->
+    <body>
+
+        <h1 class = "toptitle">Noteify</h1>
+        <p class = "topsubtitle">Start Taking Note</p>
+
+    <div class = "mainbody">
+        <h2 style = "margin-top: 0; font-family: lato;">Verify your Email</h2>
+        <p class = "bodytext">Your account creation was successful! Please click the button below to send a verification
+            email to your inbox. Once you click the link in the email, you will be automatically re-routed and have
+            full access to all features of Noteify. </p>
+
+    <button class = "buttonSty" id = "verifyEmailID" type = "button" onclick = "sendEmail()">Send Email</button><br>
+
+    <p id = "emailSentMsg" style = "padding-top: 10px; padding-bottom: -1px; font-family: lato; text-align: center; 
+    font-size: 14px; color: rgb(0, 0, 0);" class = "hideIt">Verification Email has been sent! <br>Don't see it? Check your Spam folder.</p>
+
+    <div style = "position: relative; text-align: center">
+        <a href = "https://noteify.azurewebsites.net/">
+        <p class = "bottomnav"><span style = "border-radius: 10px; padding: 1px; border-width: 1px;
+        background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/home&nbsp;</span></p></a>
+    </div>
+
+    </body>
+
+ 
+    </html>
