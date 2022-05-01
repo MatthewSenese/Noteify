@@ -12,49 +12,34 @@
     
     <script>
 
-        // call the checkIfVerified function every 5 seconds
-        window.onload = function() {
-            kickOut(); }
-    
-    </script>
-
-    <script>
-
-        // Function that checks if the user is verified, and if so, reroutes them
-        async function checkIfVerified() {
+        // Call redirUser once onload
+        window.onload = function() { redirUser(); };
+            
+        // Function that redirects users away from this page if they are logged in and verified
+        async function redirUser() {
             const fetchString = "/isVerif?"
             const response = await fetch(fetchString)
             const responseText = await response.text()
-            if (responseText == "y") {
-                location.href = 'https://noteify.azurewebsites.net/noteify'
-            }
-        }
-    
-    </script>
-
-    <script>
-
-        // Function that redirects users away from this page if they are logged in and verified
-        function kickOut() {
-            const fetchString = "/islogged?"
-            const response = await fetch(fetchString)
-            const responseText = await response.text()
-
-            if (responseText.includes("@")) {
+            if (responseText == "Verified") {
                 location.href = 'https://noteify.azurewebsites.net/'
             }
         }
 
-    </script>
+        // Function that checks if the user is verified and reroutes them to Noteify page (constant requests)
+        async function checkIfVerified() {
+            const fetchString = "/isVerif?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            if (responseText == "Verified") {
+                location.href = 'https://noteify.azurewebsites.net/noteify'
+            }
+        }
 
-    <script>
-
-        // Function that sends verification email to user
+        // Function that sends verification email to user and displays success message
         async function sendEmail() {
             const fetchString = "/verifyEmail?"
             const response = await fetch(fetchString)
             const responseText = await response.text()
-
             if (responseText == "Verified") {
                 setInterval(checkIfVerified, 2000);
                 document.getElementById('emailSentMsg').className = "show"; }
@@ -62,6 +47,7 @@
                 alert(responseText)
             }
         }
+
     </script>
 
     <!-- Navigation Bar -->
@@ -106,5 +92,4 @@
 
     </body>
 
- 
     </html>

@@ -62,9 +62,6 @@ app.get('/deleteNote', (request, response) => {
   });
 });
 
-
-
-
 // Log user in
 app.get('/loginUser', (request, response) => {
 
@@ -118,11 +115,6 @@ app.get('/createAccount', (request, response) => {
 
 // Verify a user's email
 app.get('/verifyEmail', (request, response) => {
-
- /* fb.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      user.sendEmailVerification()
-      response.send("Verified") }*/
 
   fb.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -191,9 +183,16 @@ app.get('/getNotes', (request, response) => {
 // Log the user out
 app.get('/logoutUser', (request, response) => {
 
-  fb.auth().signOut().then(() => {
+  fb.auth().signOut().then(function() {
     response.send("out")
-  })
+  }).catch(function(error) {
+    var errorMessage = error.message
+
+    if (error) {
+      response.type('text/plain')
+      response.send(errorMessage)
+    }
+  });
 });
 
 // Delete user account and notes (not working right now)

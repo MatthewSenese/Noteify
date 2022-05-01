@@ -49,38 +49,12 @@
                 if (responseText == "out") {
                     //location.href = 'http://localhost:8080/';
                     location.href = 'https://noteify.azurewebsites.net/'; 
-                } else {
-                    // if server did not send anything back, that means it was not successful. Reroute to login page
-                    alert("You are not logged in!\nClick OK to go to the login page")
-                    location.href = 'https://noteify.azurewebsites.net/login';
-                }
-            }
-        }
-
-        /*function deleteAcc() {
-            const indicator = document.getElementById('loggedInAs').className;
-            if (indicator == "show") {
-               /* document.getElementById('areYouTitle').className = "show";
-                document.getElementById('areYouBody').className = "show";
-                document.getElementById('deleteButton').className = "show";*/ // Hiding these until delete function is fixed.
-            /*} else {
-                alert("You are not logged in!")
+                } 
+            } else {
+                alert("You are not logged in!\nClick OK to go to the login page")
                 location.href = 'https://noteify.azurewebsites.net/login';
             }
-        }           saving this code for if we decide to implement account details page which would be awesome.
-
-        async function deleteAccount() {
-            alert("This button is currently out-of-service")
-            alert("Are you sure? This cannot be undone.\nClick OK to delete Account")
-            if (confirm(text) == true) {
-                const fetchString = "/deleteAccount?"
-                const response = await fetch(fetchString)
-                const responseText = await response.text()
-                if (responseText) {
-                    location.href = 'http://localhost:8080/';
-                }
-            }
-        }*/
+        }
 
     </script>
 
