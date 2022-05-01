@@ -45,30 +45,24 @@ app.get('/submitNote', (request, response) => {
   });
 })
 
-// main function to send data to the firebase database
+// main function to delete data from the firebase database
 app.get('/deleteNote', (request, response) => {
 
   // get title and note data from static page
-  var inputs = url.parse(request.url, true).query
-  const title = (inputs.title)
-  const note = (inputs.note)
   // get username and put it as ref below
-
-  // send data to database with currently logged in user
   fb.auth().onAuthStateChanged(function(user) {
     if (user) {
 
       // Delete the note
       var uid = user.uid
-
-      // DELETE DATA HERE 
-
-
-
-      response.send("")
+      firebaseDB.ref(`${uid}/`).once('value').then((snapshot) => {
+      response.remove(snapshot.val());
+      });
     }
   });
-})
+});
+
+
 
 
 // Log user in
