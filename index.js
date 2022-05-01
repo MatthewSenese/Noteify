@@ -150,18 +150,16 @@ app.get('/verifyEmail', (request, response) => {
 
 // Function to determine if email is verified
 app.get('/isVerif', (request, response) => {
-
-
   fb.auth().onAuthStateChanged(function(user) {
+
     if (user) {
       user.reload()
       if (user.emailVerified) {
-  
-        response.send("y")
+        response.send("Verified")
+      } else {
+        response.send("NoVerify")
       }
     }
-  
-    
   });
 });
 
@@ -169,13 +167,9 @@ app.get('/isVerif', (request, response) => {
 app.get('/islogged', (request, response, next) => {
   fb.auth().onAuthStateChanged(function(user) {
     
-    if (user && user.emailVerified) {
+    if (user) {
         const email = user.email
         response.send(email)
-        next()
-        
-    } else if (user && !user.emailVerified) {
-        response.send("NoVerify")
         next()
     } else {
       response.send("NoLog")

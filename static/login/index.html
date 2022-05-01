@@ -42,7 +42,6 @@
                 
                 // Collect variables
                 let email = document.getElementById("email").value
-                
                 const password = document.getElementById("password").value
 
                 if (email == "" || password == "") {
@@ -90,7 +89,7 @@
             document.getElementById('loggedInAs').value = "Welcome, " + responseText
             document.getElementById('loggedInAs').className = "hideIt";
 
-            if (responseText.length > 9) {
+            if (responseText.includes("@")) {
                 document.getElementById('loggedInAs').className = "show";
             }
         }

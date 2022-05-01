@@ -47,28 +47,13 @@
 
                 // if server sends back string containing "out", it was successful. Reroute to home page
                 if (responseText == "out") {
-                    alert("Logged out")
                     //location.href = 'http://localhost:8080/';
-                    location.href = 'https://noteify.azurewebsites.net/';
+                    location.href = 'https://noteify.azurewebsites.net/'; 
+                } else {
+                    // if server did not send anything back, that means it was not successful. Reroute to login page
+                    alert("You are not logged in!\nClick OK to go to the login page")
+                    location.href = 'https://noteify.azurewebsites.net/login';
                 }
-            } else if (indicator2 == "Welcome, NoVerify") {
-                // Still log out user, but let them know their account isn't verified
-                const fetchString = "/logoutUser?"
-                const response = await fetch(fetchString)
-                const responseText = await response.text()
-
-                // if server sends back string containing "out", it was successful
-                if (responseText == "out") {
-                    alert("Logged out")
-                }
-                
-                alert("Make sure to verify your account as well! \nClick OK to go to the verificaiton page")
-                location.href = 'https://noteify.azurewebsites.net/login/verifyUser';
-
-            } else {
-                // if server did not send anything back, that means it was not successful. Reroute to login page
-                alert("You are not logged in!\nClick OK to go to the login page")
-                location.href = 'https://noteify.azurewebsites.net/login';
             }
         }
 
@@ -113,10 +98,9 @@
             document.getElementById('loggedInAs').value = "Welcome, " + responseText
             document.getElementById('loggedInAs').className = "hideIt";
 
-            if (responseText.length > 9) {
+            if (responseText.includes("@")) {
                 document.getElementById('loggedInAs').className = "show";
-                document.getElementById('loggedInAs').className = "show";
-            }
+            } 
         }
 
     </script>

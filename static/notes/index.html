@@ -35,12 +35,21 @@
             document.getElementById('loggedInAs').value = "Welcome, " + responseText
             document.getElementById('loggedInAs').className = "hideIt";
 
-            if (responseText.length > 9) { //  Logged in and verified
-                document.getElementById('loggedInAs').className = "show";
-            } else if (responseText == "NoVerify") { // Logged in but not verified
-                alert("Your account is not verified. \nClick OK to go to the verification page")
-                location.href = 'https://noteify.azurewebsites.net/login/verifyUser'
-            } else { // Not logged in at all
+            if (responseText.includes("@")) { // Logged in
+
+                const fetchStringV = "/isVerif?"
+                const responseV = await fetch(fetchStringV)
+                const responseTextV = await responseV.text()
+
+                if (responseTextV != "Verified") { // Reroutes user if not verified
+                    alert("You're account is not verified. \nClick OK to go to the verification page")
+                    document.getElementById('loggedInAs').className = "show";
+                    location.href = 'https://noteify.azurewebsites.net/login/verifyUser'
+                } else { // Shows their login info if verified
+                    document.getElementById('loggedInAs').className = "show";
+                }
+                
+            } else { // Not logged in 
                 alert("You are not logged in.\nClick OK to go to the login page")
                 location.href = 'https://noteify.azurewebsites.net/login/'
             }

@@ -101,7 +101,7 @@
             document.getElementById('loggedInAs').value = "Welcome, " + responseText
             document.getElementById('loggedInAs').className = "hideIt";
 
-            if (responseText.length > 9) {
+            if (responseText.includes("@")) {
                 document.getElementById('loggedInAs').className = "show";
             }
         }
