@@ -45,22 +45,40 @@ app.get('/submitNote', (request, response) => {
   });
 })
 
+app.get('/updateNote', (request, response) => {
+    // get title and note data from static page
+    var inputs = url.parse(request.url, true).query
+    const title = (inputs.title)
+    const note = (inputs.note)
+
+    fb.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var uid = user.uid
+        firebaseDB.ref(`${uid}/` + note).update({theNote: title});
+        response.send("")
+      }
+    });
+});
+
 // main function to delete data from the firebase database
 app.get('/deleteNote', (request, response) => {
 
   // get title and note data from static page
+  var inputs = url.parse(request.url, true).query
+  const title = (inputs.title)
+
   // get username and put it as ref below
   fb.auth().onAuthStateChanged(function(user) {
     if (user) {
-
       // Delete the note
       var uid = user.uid
-      firebaseDB.ref(`${uid}/`).once('value').then((snapshot) => {
-      response.remove(snapshot.val());
-      });
+      firebaseDB.ref(`${uid}/` + title).remove()
+      response.send("")
     }
   });
 });
+  
+
 
 // Log user in
 app.get('/loginUser', (request, response) => {
