@@ -162,18 +162,18 @@
                 // Submit note
                 let text = "Are you sure you'd like to submit this note?\nClick OK to submit or Cancel"
                 if (confirm(text) == true) {
-
                     // If note deletion successful, submit new note with same title
-                    const fetchString = "/submitNote?title="+title+"&note="+note
-                    const response = await fetch(fetchString)
-                    const responseText = await response.text()
+                    const fetchStringN = "/updateNote?title="+title+"&note="+note
+                    const responseN = await fetch(fetchStringN)
+                    const responseText = await responseN.text()
                     if (responseText == "") {
                         document.getElementById('editMsg').className = "hideIt";
                         document.getElementById('resubNoteID').className = "hideIt";
                         document.getElementById('editMsg').className = "hideIt";
                         showSuccess();
-                        cancelEdit();
+                        document.location.reload(true)
                     }
+                    
                 }
             
             } else {
@@ -187,13 +187,14 @@
             // Delete note
             let text = "Are you sure you'd like to delete this note?\nClick OK to submit or Cancel"
             if (confirm(text) == true) {
-                const fetchString = "/deleteNote?title="+title+"&note="+note
+                const fetchString = "/deleteNote?title="+titleOutput.value
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
 
                 // if successful, display success message
                 if (responseText == "") {
                     showSuccessDel();
+                    document.location.reload(true)
                 }
             }
         }
@@ -256,7 +257,7 @@
 
     <!-- location bar at the bottom of the page -->
     <div style = "position: relative; text-align: center">
-        <a href = "https://noteify.azurewebsites.net/noteify">
+        <a href = "https://noteify.azurewebsites.net/notes">
         <p class = "bottomnav"><span style = "border-radius: 10px; padding: 1px; border-width: 1px;
         background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/notes&nbsp;</span></p></a>
     </div>
@@ -300,5 +301,3 @@
     font-size: 14px; color: rgb(0, 189, 0);" class = "hideIt">Message Successfully Deleted!</p>
 
     </body>
-
-    </html>
