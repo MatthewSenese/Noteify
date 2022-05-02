@@ -171,6 +171,7 @@
                         document.getElementById('resubNoteID').className = "hideIt";
                         document.getElementById('editMsg').className = "hideIt";
                         showSuccess();
+                        document.location.reload(true)
                     }
                     
                 }
@@ -192,6 +193,7 @@
                 // if successful, display success message
                 if (responseText == "") {
                     showSuccessDel();
+                    document.location.reload(true)
                 }
             }
         }
