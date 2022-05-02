@@ -10,18 +10,48 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
     </head>
     
+    <input style = "position: absolute; top: 10px; left: 10px; width: auto;
+    font-family: fire; background-color: transparent; border: none; outline: none;" 
+    class = "loggedIn" type = "text" id = "loggedInAs" readonly size = "45">
+
     <script>
 
         // Call redirUser once onload
-        window.onload = function() { redirUser(); };
+        window.onload = function() { redirUserVer(); redirUserLog(); welcMsg();};
+
+        // function that, if user is logged in, displays welcome message
+        async function welcMsg() {
+
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            
+            document.getElementById('loggedInAs').value = "Welcome, " + responseText
+            document.getElementById('loggedInAs').className = "hideIt";
+
+            if (responseText.includes("@")) {
+                document.getElementById('loggedInAs').className = "show";
+            }
+        }
             
         // Function that redirects users away from this page if they are logged in and verified
-        async function redirUser() {
+        async function redirUserVer() {
             const fetchString = "/isVerif?"
             const response = await fetch(fetchString)
             const responseText = await response.text()
             if (responseText == "Verified") {
                 location.href = 'https://noteify.azurewebsites.net/'
+            }
+        }
+
+        // Function that redirects users away from this page if they are not logged in (not in creation process)
+        async function redirUserLog() {
+            const fetchString = "/islogged?"
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+            
+            if (responseText == "NoLog") { 
+                location.href = 'https://noteify.azurewebsites.net/login/createAccount'
             }
         }
 
@@ -37,12 +67,14 @@
 
         // Function that sends verification email to user and displays success message
         async function sendEmail() {
+
+            // If user is not logged in, redirect them to create account
             const fetchString = "/verifyEmail?"
             const response = await fetch(fetchString)
             const responseText = await response.text()
+            document.getElementById('emailSentMsg').className = "show";
             if (responseText == "Verified") {
-                setInterval(checkIfVerified, 2000);
-                document.getElementById('emailSentMsg').className = "show"; }
+                setInterval(checkIfVerified, 2000); }
             else {
                 alert(responseText)
             }
@@ -87,7 +119,7 @@
     <div style = "position: relative; text-align: center">
         <a href = "https://noteify.azurewebsites.net/">
         <p class = "bottomnav"><span style = "border-radius: 10px; padding: 1px; border-width: 1px;
-        background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/home&nbsp;</span></p></a>
+        background-color: rgb(233, 233, 233); border-style: solid;">&nbsp;www.noteify.com/verify&nbsp;</span></p></a>
     </div>
 
     </body>
