@@ -156,31 +156,26 @@
             if (savedNote != mainArray[setCount][1]) {
 
                 // Get Values
-                const note = document.getElementById('titleOutput').value;
-                const title = document.getElementById('noteOutput').value;
+                var note = document.getElementById('titleOutput').value.trim();
+                var title = document.getElementById('noteOutput').value.trim();
 
                 // Submit note
                 let text = "Are you sure you'd like to submit this note?\nClick OK to submit or Cancel"
                 if (confirm(text) == true) {
 
-                    // First delete the note
-                    const fetchStringD = "/deleteNote?title="+title+"&note="+note
-                    const responseD = await fetch(fetchStringD)
-                    const responseTextD = await response.text()
-                    if (responseTextD == "") {
-
-                        // If note deletion successful, submit new note with same title
-                        const fetchStringN = "/submitNote?title="+title+"&note="+note
-                        const responseN = await fetch(fetchStringN)
-                        const responseText = await responseN.text()
-                        if (responseText == "") {
-                            document.getElementById('editMsg').className = "hideIt";
-                            document.getElementById('resubNoteID').className = "hideIt";
-                            document.getElementById('editMsg').className = "hideIt";
-                            showSuccess();
-                        }
+                    // If note deletion successful, submit new note with same title
+                    const fetchString = "/submitNote?title="+title+"&note="+note
+                    const response = await fetch(fetchString)
+                    const responseText = await response.text()
+                    if (responseText == "") {
+                        document.getElementById('editMsg').className = "hideIt";
+                        document.getElementById('resubNoteID').className = "hideIt";
+                        document.getElementById('editMsg').className = "hideIt";
+                        showSuccess();
+                        cancelEdit();
                     }
                 }
+            
             } else {
                 alert("You did not edit the note!")
                 cancelEdit();
